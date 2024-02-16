@@ -1,24 +1,31 @@
-const { Configuration, OpenAIApi } = require("openai");
+import { OpenAI } from "openai";
 
-const configuration = new Configuration({
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-const openai = new OpenAIApi(configuration);
 
-exports.handler = async (event) => {
+export async function handler(event) {
   try {
     const body = JSON.parse(event.body);
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: body.prompt,
-      max_tokens: 150,
+    const userQuestion = body.question; // Extract the user question from the request body
+
+    const systemMessage =
+      "This is a Valentine's Day themed chat. Feel free to ask any questions about love, relationships, or how to express affection to your loved ones.";
+
+    const completion = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: "system", content: "systemMessage" },
+        { role: "user", content: userQuestion },
+      ],
     });
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: response.data.choices[0].text.trim() }),
+      body: JSON.stringify({ message: completion.choices[0].message.content }),
     };
   } catch (error) {
-    return { statusCode: 500, body: error.toString() };
+    console.error("Error:", error);
+    return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
   }
-};
+}

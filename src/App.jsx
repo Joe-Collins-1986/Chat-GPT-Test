@@ -1,26 +1,40 @@
-import { useState } from "react";
+// Example using React JSX
+import React, { useState } from "react";
 
-function App() {
-  const [input, setInput] = useState("");
+function QuestionForm() {
+  const [question, setQuestion] = useState("");
+  const [response, setResponse] = useState("");
 
-  const handleSubmit = async () => {
-    const response = await fetch("/.netlify/functions/chatgpt", {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Call your serverless function here
+    const fetchedResponse = await fetch("/.netlify/functions/chatgpt", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ prompt: input }),
+      body: JSON.stringify({ question }),
     });
-    const data = await response.json();
-    alert(`Response: ${data.message}`);
+    const jsonResponse = await fetchedResponse.json();
+    setResponse(jsonResponse.message);
   };
 
   return (
-    <div className="App">
-      <input value={input} onChange={(e) => setInput(e.target.value)} />
-      <button onClick={handleSubmit}>Submit</button>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Ask a Question:
+          <input
+            type="text"
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+          />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+      <div>{response}</div>
     </div>
   );
 }
 
-export default App;
+export default QuestionForm;
