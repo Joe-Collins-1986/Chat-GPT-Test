@@ -6,8 +6,7 @@ const openai = new OpenAI({
 
 export async function handler(event) {
   try {
-    const body = JSON.parse(event.body);
-    const userQuestion = body.question; // Extract the user question from the request body
+    const { preset, question } = JSON.parse(event.body);
 
     const systemMessage =
       "This is a Valentine's Day themed chat. Feel free to ask any questions about love, relationships, or how to express affection to your loved ones.";
@@ -16,7 +15,8 @@ export async function handler(event) {
       model: "gpt-3.5-turbo",
       messages: [
         { role: "system", content: "systemMessage" },
-        { role: "user", content: userQuestion },
+        { role: "user", content: preset },
+        { role: "user", content: question },
       ],
     });
 

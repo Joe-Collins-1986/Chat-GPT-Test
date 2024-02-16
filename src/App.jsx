@@ -4,6 +4,9 @@ import React, { useState } from "react";
 function QuestionForm() {
   const [question, setQuestion] = useState("");
   const [response, setResponse] = useState("");
+  const [preset, setPreset] = useState(
+    "My WIFE is a SPORTY 21 year old who loves ANIMALS. Really tailor the answer to my next question to HER focusing on her age, likes and gender. Start out you answer by explaining why it is well suited to her."
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,7 +16,7 @@ function QuestionForm() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ question }),
+      body: JSON.stringify({ preset, question }),
     });
     const jsonResponse = await fetchedResponse.json();
     setResponse(jsonResponse.message);
