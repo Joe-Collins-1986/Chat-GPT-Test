@@ -1,22 +1,25 @@
-// Example using React JSX
 import React, { useState } from "react";
 
 function QuestionForm() {
   const [question, setQuestion] = useState("");
   const [response, setResponse] = useState("");
-  const [preset, setPreset] = useState(
-    "My WIFE is a SPORTY 21 year old who loves ANIMALS. Really tailor the answer to my next question to HER focusing on her age, likes and gender. Start out you answer by explaining why it is well suited to her."
-  );
+  const [relationship, setRelationship] = useState("Wife");
+  const [personType, setPersonType] = useState("Sporty");
+  const [age, setAge] = useState("21");
+  const [loves, setLoves] = useState("Animals");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Call your serverless function here
+    // Update preset just before submitting
+    const updatedPreset = `My ${relationship} is a ${personType} ${age} year old who loves ${loves}. Really tailor the answer to my next question to her focusing on her age, likes, and gender. Start out your answer by explaining why it is well suited to her.`;
+
+    // Call your serverless function here with the updatedPreset
     const fetchedResponse = await fetch("/.netlify/functions/chatgpt", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ preset, question }),
+      body: JSON.stringify({ preset: updatedPreset, question }),
     });
     const jsonResponse = await fetchedResponse.json();
     setResponse(jsonResponse.message);
@@ -25,6 +28,55 @@ function QuestionForm() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        <br />
+        <label>
+          Relationship:
+          <select
+            value={relationship}
+            onChange={(e) => setRelationship(e.target.value)}
+          >
+            <option value="Wife">Wife</option>
+            <option value="Husband">Husband</option>
+            <option value="Friend">Friend</option>
+            <option value="Sibling">Sibling</option>
+            <option value="Parent">Parent</option>
+          </select>
+        </label>
+        <br />
+        <label>
+          Type of Person:
+          <select
+            value={personType}
+            onChange={(e) => setPersonType(e.target.value)}
+          >
+            <option value="Sporty">Sporty</option>
+            <option value="Intellectual">Intellectual</option>
+            <option value="Creative">Creative</option>
+            <option value="Adventurous">Adventurous</option>
+          </select>
+        </label>
+        <br />
+        <label>
+          Age:
+          <input
+            type="number"
+            value={age}
+            min="1"
+            max="100"
+            onChange={(e) => setAge(e.target.value)}
+          />
+        </label>
+        <br />
+        <label>
+          Loves:
+          <select value={loves} onChange={(e) => setLoves(e.target.value)}>
+            <option value="Animals">Animals</option>
+            <option value="Books">Books</option>
+            <option value="Travel">Travel</option>
+            <option value="Music">Music</option>
+          </select>
+        </label>
+        <br />
         <label>
           Ask a Question:
           <input
