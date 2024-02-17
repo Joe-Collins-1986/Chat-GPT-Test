@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import ChatGptForm from "./components/ChatGptForm";
+import RegisterPage from "./pages/Register";
+import "./api/axiosDefault";
 
 const App = () => {
-  return <ChatGptForm />;
+  return (
+    <>
+      <ChatGptForm />;
+      <RegisterPage />;
+    </>
+  );
 };
 
 export default App;
