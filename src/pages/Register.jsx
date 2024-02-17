@@ -27,7 +27,7 @@ const RegisterPage = () => {
     password2: "",
   });
 
-  const { username, email, password1, password2 } = signUpData;
+  const { username, password1, password2 } = signUpData;
 
   const [errors, setErrors] = useState({});
 

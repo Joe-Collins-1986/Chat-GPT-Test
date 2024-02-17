@@ -7,13 +7,13 @@ import { Box } from "@chakra-ui/react";
 
 import HomePage from "./pages/Home";
 import RegisterPage from "./pages/Register";
+import NavBar from "./components/Navbar";
 
 const App = () => {
   return (
     <>
       <Box position="fixed" top={0} w="100vw" zIndex={5} area="nav">
-        {/* <NavBar /> */}
-        Put Navbar Here
+        <NavBar />
       </Box>
       <Box pt="80px">
         <Routes>
@@ -23,7 +23,6 @@ const App = () => {
           <Route exact path="/register/" element={<RegisterPage />} />
           {/* <Route path="*" element={<ErrorPage />} /> */}
         </Routes>
-        <ChatGptForm />;
       </Box>
     </>
   );
