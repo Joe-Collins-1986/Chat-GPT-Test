@@ -1,13 +1,30 @@
-import React, { useState } from "react";
+import { useEffect, useRef } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import ChatGptForm from "./components/ChatGptForm";
-import RegisterPage from "./pages/Register";
 import "./api/axiosDefault";
+
+import { Box } from "@chakra-ui/react";
+
+import HomePage from "./pages/Home";
+import RegisterPage from "./pages/Register";
 
 const App = () => {
   return (
     <>
-      <ChatGptForm />;
-      <RegisterPage />;
+      <Box position="fixed" top={0} w="100vw" zIndex={5} area="nav">
+        {/* <NavBar /> */}
+        Put Navbar Here
+      </Box>
+      <Box pt="80px">
+        <Routes>
+          // Add alert for errors
+          <Route exact path="/home/" element={<HomePage />} />
+          {/* <Route exact path="/login/" element={<LoginPage />} /> */}
+          <Route exact path="/register/" element={<RegisterPage />} />
+          {/* <Route path="*" element={<ErrorPage />} /> */}
+        </Routes>
+        <ChatGptForm />;
+      </Box>
     </>
   );
 };
