@@ -3,15 +3,18 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import handleSignOut from "../utils/logout";
 
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../contexts/CurrentUserContext";
+
 const NavBar = () => {
+  const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
+  const navigate = useNavigate();
+
   const loggedInLinks = (
     <>
-      <Box px={6}>
-        <NavLink to="/home/" aria-label="Feed">
-          Ask Cupid
-        </NavLink>
-      </Box>
-
       <Box px={4}>
         <Link
           onClick={() => {
@@ -61,26 +64,34 @@ const NavBar = () => {
           </Flex>
         </Link>
       </HStack>
-
-      <HStack pr={"10px"}>
+      <HStack>
         <Show above="lg">
-          <Box px={4}>
-            <NavLink to="/" aria-label="Home">
-              Home
-            </NavLink>
-          </Box>
-          <Box px={4}>
-            <NavLink to="/profiles/" aria-label="Profiles">
-              Profile
-            </NavLink>
-          </Box>
-          <Box px={4}>
-            <NavLink to="/" aria-label="Home">
-              Dev Team
-            </NavLink>
-          </Box>
+          {currentUser && (
+            <>
+              <Box px={4}>
+                <NavLink to="/" aria-label="Home">
+                  Question
+                </NavLink>
+              </Box>
+              <Box px={4}>
+                <NavLink to="/profiles/" aria-label="Profiles">
+                  Profile
+                </NavLink>
+              </Box>
+              <Box px={4}>
+                <NavLink to="/partner-info/" aria-label="Partner Info">
+                  Partner Info
+                </NavLink>
+              </Box>
+              <Box px={4}>
+                <NavLink to="/dev-team/" aria-label="Dev Team">
+                  Dev Team
+                </NavLink>
+              </Box>
+            </>
+          )}
 
-          {/* {currentUser ? loggedInLinks : loggedOutLinks} */}
+          {currentUser ? loggedInLinks : loggedOutLinks}
         </Show>
 
         <Show below="lg">Hamberger</Show>

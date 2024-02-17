@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import styles from "../styles/ChatGptForm.module.css";
 
-const ChatGptForm = () => {
+const ChatGptFormChakra = () => {
   const [question, setQuestion] = useState("");
   const [response, setResponse] = useState("");
   const [relationship, setRelationship] = useState("Wife");
@@ -144,4 +144,4 @@ const ChatGptForm = () => {
   );
 };
 
-export default ChatGptForm;
+export default ChatGptFormChakra;

@@ -1,12 +1,11 @@
-import { useEffect, useRef } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
-import ChatGptForm from "./components/ChatGptForm";
+import { Routes, Route } from "react-router-dom";
 import "./api/axiosDefault";
 
 import { Box } from "@chakra-ui/react";
 
 import HomePage from "./pages/Home";
 import RegisterPage from "./pages/Register";
+import LoginPage from "./pages/Login";
 import NavBar from "./components/Navbar";
 
 const App = () => {
@@ -15,11 +14,12 @@ const App = () => {
       <Box position="fixed" top={0} w="100vw" zIndex={5} area="nav">
         <NavBar />
       </Box>
+
       <Box pt="80px">
         <Routes>
           // Add alert for errors
-          <Route exact path="/home/" element={<HomePage />} />
-          {/* <Route exact path="/login/" element={<LoginPage />} /> */}
+          <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/login/" element={<LoginPage />} />
           <Route exact path="/register/" element={<RegisterPage />} />
           {/* <Route path="*" element={<ErrorPage />} /> */}
         </Routes>

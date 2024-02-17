@@ -5,13 +5,17 @@ import "./index.css";
 import theme from "../theme";
 
 import { BrowserRouter } from "react-router-dom";
+
+import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import App from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <BrowserRouter>
-        <App />
+        <CurrentUserProvider>
+          <App />
+        </CurrentUserProvider>
       </BrowserRouter>
     </ChakraProvider>
   </React.StrictMode>
