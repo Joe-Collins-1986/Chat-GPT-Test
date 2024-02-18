@@ -8,6 +8,8 @@ import RegisterPage from "./pages/Register";
 import LoginPage from "./pages/Login";
 import NavBar from "./components/Navbar";
 
+import ProtectedRoutes from "./utils/ProtectRoutes";
+
 const App = () => {
   return (
     <>
@@ -18,7 +20,16 @@ const App = () => {
       <Box pt="80px">
         <Routes>
           // Add alert for errors
-          <Route exact path="/" element={<HomePage />} />
+          <Route
+            exact
+            path="/"
+            element={
+              <ProtectedRoutes>
+                <HomePage />
+              </ProtectedRoutes>
+            }
+          />
+          {/* <Route exact path="/" element={<HomePage />} /> */}
           <Route exact path="/login/" element={<LoginPage />} />
           <Route exact path="/register/" element={<RegisterPage />} />
           {/* <Route path="*" element={<ErrorPage />} /> */}

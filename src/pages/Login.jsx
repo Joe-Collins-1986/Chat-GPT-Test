@@ -15,8 +15,8 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useSetCurrentUser } from "../contexts/CurrentUserContext";
-import { useRedirect } from "../hooks/useRedirect";
 import { setTokenTimestamp } from "../utils/tokenManagment";
+import { useRedirect } from "../hooks/useRedirect";
 
 const LoginPage = () => {
   const setCurrentUser = useSetCurrentUser();
@@ -47,7 +47,7 @@ const LoginPage = () => {
       .then((response) => {
         setCurrentUser(response.data.user);
         setTokenTimestamp(response.data);
-        navigate(-1);
+        navigate("/");
       })
       .catch((err) => {
         // add console log to for dev testing if neccessary

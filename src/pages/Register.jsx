@@ -17,7 +17,6 @@ import {
 } from "@chakra-ui/react";
 import { FaHeart } from "react-icons/fa";
 import axios from "axios";
-import { useRedirect } from "../hooks/useRedirect";
 
 const RegisterPage = () => {
   const [signUpData, setSignUpData] = useState({
@@ -32,7 +31,6 @@ const RegisterPage = () => {
   const [errors, setErrors] = useState({});
 
   const navigate = useNavigate();
-  useRedirect("loggedIn");
 
   const handleChange = (event) => {
     setSignUpData({
