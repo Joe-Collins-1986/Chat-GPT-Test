@@ -26,7 +26,7 @@ const RegisterPage = () => {
     password2: "",
   });
 
-  const { username, password1, password2 } = signUpData;
+  const { username, email, password1, password2 } = signUpData;
 
   const [errors, setErrors] = useState({});
 
@@ -44,17 +44,15 @@ const RegisterPage = () => {
     axios
       .post("dj-rest-auth/registration/", signUpData)
       .then((response) => {
-        // add console log to for dev testing if neccessary
         navigate("/login/");
       })
       .catch((err) => {
-        // add console log to for dev testing if neccessary
         setErrors(err.response?.data);
       });
   };
 
   return (
-    <Flex minH={"100vh"} justify={"center"} bg={"pinkCustom.50"}>
+    <Flex minH={"100vh"} justify={"center"}>
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign="center" px={10}>
@@ -63,10 +61,11 @@ const RegisterPage = () => {
           <HStack align={"top"} justify={"center"}>
             <Hide below="sm">
               <FaHeart fontSize={"1.5rem"} />
-
               <Text fontSize={"lg"}>
                 to get{" "}
                 <Text as="span" color="pinkCustom.500">
+                  {" "}
+                  {/* Ensure this color aligns with your theme */}
                   Cupids
                 </Text>{" "}
                 advice
@@ -79,62 +78,52 @@ const RegisterPage = () => {
           <form onSubmit={handleSubmit}>
             <Stack spacing={4}>
               <FormControl id="username">
-                <FormLabel htmlFor="username">Username</FormLabel>
+                <FormLabel>Username</FormLabel>
                 <Input
                   type="text"
                   name="username"
                   value={username}
                   onChange={handleChange}
-                  aria-label="Username"
+                  bg="pinkCustom.50"
                 />
               </FormControl>
 
-              {errors.username?.map((message, idx) => (
-                <Alert key={idx} status="warning">
-                  <AlertIcon />
-                  {message}
-                </Alert>
-              ))}
+              <FormControl id="email">
+                <FormLabel>Email</FormLabel>
+                <Input
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={handleChange}
+                  bg="pinkCustom.50"
+                />
+              </FormControl>
 
               <FormControl id="password1">
-                <FormLabel htmlFor="password1">Password</FormLabel>
+                <FormLabel>Password</FormLabel>
                 <Input
                   type="password"
                   name="password1"
                   value={password1}
                   onChange={handleChange}
-                  aria-label="Password"
+                  bg="pinkCustom.50"
                 />
               </FormControl>
 
-              {errors.password1?.map((message, idx) => (
-                <Alert key={idx} status="warning">
-                  <AlertIcon />
-                  {message}
-                </Alert>
-              ))}
-
               <FormControl id="password2">
-                <FormLabel htmlFor="password2">Confirm Password</FormLabel>
+                <FormLabel>Confirm Password</FormLabel>
                 <Input
                   type="password"
                   name="password2"
                   value={password2}
                   onChange={handleChange}
-                  aria-label="Confirm Password"
+                  bg="pinkCustom.50"
                 />
               </FormControl>
 
-              {errors.password2?.map((message, idx) => (
-                <Alert key={idx} status="warning">
-                  <AlertIcon />
-                  {message}
-                </Alert>
-              ))}
-
               <Button
                 type="submit"
-                bg="pinkCustom.400"
+                bg="pinkCustom.400" // Ensure this and other custom colors align with your theme
                 color={"white"}
                 _hover={{
                   bg: "pinkCustom.500",
@@ -142,13 +131,6 @@ const RegisterPage = () => {
               >
                 Sign Up
               </Button>
-
-              {errors.non_field_errors?.map((message, idx) => (
-                <Alert key={idx} status="warning">
-                  <AlertIcon />
-                  {message}
-                </Alert>
-              ))}
             </Stack>
           </form>
         </Box>

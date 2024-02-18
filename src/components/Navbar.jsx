@@ -55,7 +55,6 @@ const NavBar = () => {
       <HStack>
         <Link to="/">
           <Flex alignItems="center">
-            // Add logo here
             <Show above="sm">
               <Text ml={2} fontWeight={700}>
                 Ask Cupid
@@ -76,11 +75,6 @@ const NavBar = () => {
               <Box px={4}>
                 <NavLink to="/profiles/" aria-label="Profiles">
                   Profile
-                </NavLink>
-              </Box>
-              <Box px={4}>
-                <NavLink to="/partner-info/" aria-label="Partner Info">
-                  Partner Info
                 </NavLink>
               </Box>
               <Box px={4}>

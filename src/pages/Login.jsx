@@ -57,11 +57,7 @@ const LoginPage = () => {
   };
 
   return (
-    <Flex
-      minH={"100vh"}
-      justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
-    >
+    <Flex minH={"100vh"} justify={"center"}>
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign="center" px={10}>
@@ -85,6 +81,7 @@ const LoginPage = () => {
                   value={username}
                   onChange={handleChange}
                   aria-label="Username"
+                  bg="pinkCustom.50"
                 />
               </FormControl>
 
@@ -103,6 +100,7 @@ const LoginPage = () => {
                   value={password}
                   onChange={handleChange}
                   aria-label="Password"
+                  bg="pinkCustom.50"
                 />
               </FormControl>
 
@@ -115,10 +113,10 @@ const LoginPage = () => {
 
               <Button
                 type="submit"
-                bg={"purple.400"}
+                bg="pinkCustom.400"
                 color={"white"}
                 _hover={{
-                  bg: "purple.500",
+                  bg: "pinkCustom.500",
                 }}
               >
                 Login

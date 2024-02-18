@@ -3,7 +3,8 @@ import "./api/axiosDefault";
 
 import { Box } from "@chakra-ui/react";
 
-import HomePage from "./pages/Home";
+// import HomePage from "./pages/Home";
+import HomeChakra from "./pages/HomeChakra";
 import RegisterPage from "./pages/Register";
 import LoginPage from "./pages/Login";
 import NavBar from "./components/Navbar";
@@ -17,7 +18,7 @@ const App = () => {
         <NavBar />
       </Box>
 
-      <Box pt="80px">
+      <Box pt="40px" bg="pinkCustom.50">
         <Routes>
           // Add alert for errors
           <Route
@@ -25,7 +26,7 @@ const App = () => {
             path="/"
             element={
               <ProtectedRoutes>
-                <HomePage />
+                <HomeChakra />
               </ProtectedRoutes>
             }
           />

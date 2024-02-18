@@ -10,7 +10,6 @@ import {
   Container,
   VStack,
 } from "@chakra-ui/react";
-import styles from "../styles/ChatGptForm.module.css";
 
 const ChatGptFormChakra = () => {
   const [question, setQuestion] = useState("");
@@ -37,7 +36,6 @@ const ChatGptFormChakra = () => {
 
   return (
     <Box w="100%" px={{ base: "4", md: "8" }} py={4}>
-      <div className={styles.Test}>thr</div>
       <Container
         maxW="full"
         p={5}
