@@ -36,13 +36,7 @@ const ChatGptFormChakra = () => {
 
   return (
     <Box w="100%" px={{ base: "4", md: "8" }} py={4}>
-      <Container
-        maxW="full"
-        p={5}
-        borderRadius="lg"
-        boxShadow="md"
-        bg="pinkCustom.50"
-      >
+      <Container maxW="full" p={5} borderRadius="lg" boxShadow="md" bg="white">
         <form onSubmit={handleSubmit}>
           <VStack spacing={4}>
             <FormControl>
@@ -54,6 +48,7 @@ const ChatGptFormChakra = () => {
                 _focus={{
                   borderColor: "pinkCustom.300",
                 }}
+                bg="pinkCustom.50"
               >
                 <option value="Sporty">Sporty</option>
                 <option value="Intellectual">Intellectual</option>
@@ -70,6 +65,7 @@ const ChatGptFormChakra = () => {
                 _focus={{
                   borderColor: "pinkCustom.300",
                 }}
+                bg="pinkCustom.50"
               >
                 <option value="Wife">Wife</option>
                 <option value="Husband">Husband</option>
@@ -90,6 +86,7 @@ const ChatGptFormChakra = () => {
                 _focus={{
                   borderColor: "pinkCustom.300",
                 }}
+                bg="pinkCustom.50"
               />
             </FormControl>
             <FormControl>
@@ -101,6 +98,7 @@ const ChatGptFormChakra = () => {
                 _focus={{
                   borderColor: "pinkCustom.300",
                 }}
+                bg="pinkCustom.50"
               >
                 <option value="Animals">Animals</option>
                 <option value="Books">Books</option>
@@ -118,6 +116,7 @@ const ChatGptFormChakra = () => {
                 _focus={{
                   borderColor: "pinkCustom.300",
                 }}
+                bg="pinkCustom.50"
               />
             </FormControl>
             <Button colorScheme="pinkCustom" type="submit">
@@ -131,6 +130,7 @@ const ChatGptFormChakra = () => {
               value={response}
               isReadOnly
               borderColor="pinkCustom.200"
+              minH="200px"
               _focus={{
                 borderColor: "pinkCustom.300",
               }}

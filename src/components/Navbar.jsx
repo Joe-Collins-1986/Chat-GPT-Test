@@ -2,6 +2,7 @@ import { Box, Flex, HStack, Show, Text } from "@chakra-ui/react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import handleSignOut from "../utils/logout";
+import HamburgerMenu from "./Hamberger";
 
 import {
   useCurrentUser,
@@ -46,7 +47,7 @@ const NavBar = () => {
 
   return (
     <HStack
-      color={"white"}
+      color="white"
       bg="pinkCustom.500"
       justifyContent="space-between"
       padding="10px"
@@ -88,7 +89,9 @@ const NavBar = () => {
           {currentUser ? loggedInLinks : loggedOutLinks}
         </Show>
 
-        <Show below="lg">Hamberger</Show>
+        <Show below="lg">
+          <HamburgerMenu />
+        </Show>
       </HStack>
     </HStack>
   );
