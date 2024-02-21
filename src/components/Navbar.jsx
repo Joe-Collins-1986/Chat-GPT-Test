@@ -10,7 +10,7 @@ import {
 } from "../contexts/CurrentUserContext";
 
 const NavBar = () => {
-  const currentUser = useCurrentUser();
+  const { currentUser } = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const navigate = useNavigate();
 

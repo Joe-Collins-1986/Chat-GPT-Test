@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import handleSignOut from "../utils/logout";
 
 const HamburgerMenu = () => {
-  const currentUser = useCurrentUser();
+  const { currentUser } = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const navigate = useNavigate();
 
@@ -72,9 +72,9 @@ const HamburgerMenu = () => {
                 Question
               </MenuItem>
             </NavLink>
-            <NavLink to="/profiles/">
+            <NavLink to="/account/">
               <MenuItem bg="pinkCustom.500" aria-label="Profile">
-                Profile
+                Account
               </MenuItem>
             </NavLink>
             {currentUser ? loggedInLinks : loggedOutLinks}

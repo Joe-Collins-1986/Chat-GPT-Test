@@ -7,7 +7,7 @@ import AccountCard from "../../components/AccountCard";
 import { Box } from "@chakra-ui/react";
 
 const MyAccount = () => {
-  const currentUser = useCurrentUser();
+  const { currentUser } = useCurrentUser();
   const id = currentUser?.pk;
   const { account, error, loaded } = useAccountHook(id);
 

@@ -15,6 +15,7 @@ export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   const handleMount = () => {
@@ -22,8 +23,10 @@ export const CurrentUserProvider = ({ children }) => {
       .get("dj-rest-auth/user/")
       .then((response) => {
         setCurrentUser(response.data);
+        setIsLoading(false);
       })
       .catch((error) => {
+        setIsLoading(false);
         // add console log to for dev testing if neccessary
       });
   };
@@ -79,7 +82,7 @@ export const CurrentUserProvider = ({ children }) => {
   }, [navigate]);
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={{ currentUser, isLoading }}>
       <SetCurrentUserContext.Provider value={setCurrentUser}>
         {children}
       </SetCurrentUserContext.Provider>
