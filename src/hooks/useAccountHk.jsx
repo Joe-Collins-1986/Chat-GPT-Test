@@ -10,14 +10,19 @@ const useAccountHook = (id) => {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    if (account && account.id === id) {
+      setLoaded(true);
+      return;
+    }
+
     const controller = new AbortController();
     const getAccount = async () => {
       try {
-        const { data: account } = await axiosReq.get(`/accounts/${id}/`, {
+        const { data: accountData } = await axiosReq.get(`/accounts/${id}/`, {
           signal: controller.signal,
         });
-        console.log("account", account);
-        setAccount(account);
+        console.log("account", accountData);
+        setAccount(accountData);
         setLoaded(true);
       } catch (err) {
         if (err instanceof CanceledError) return;
@@ -30,7 +35,7 @@ const useAccountHook = (id) => {
     getAccount();
 
     return () => controller.abort();
-  }, [id, setAccount]);
+  }, [id, setAccount, account]);
 
   return {
     account,

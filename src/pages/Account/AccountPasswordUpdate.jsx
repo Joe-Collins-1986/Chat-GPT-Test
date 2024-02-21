@@ -7,8 +7,6 @@ import {
   Heading,
   Input,
   Stack,
-  Image,
-  Show,
   HStack,
   Alert,
   AlertIcon,
