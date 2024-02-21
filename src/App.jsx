@@ -7,6 +7,8 @@ import { Box } from "@chakra-ui/react";
 import HomeChakra from "./pages/HomeChakra";
 import RegisterPage from "./pages/Register";
 import LoginPage from "./pages/Login";
+import MyAccount from "./pages/Account/MyAccount";
+
 import NavBar from "./components/Navbar";
 
 import ProtectedRoutes from "./utils/ProtectRoutes";
@@ -27,6 +29,15 @@ const App = () => {
             element={
               <ProtectedRoutes>
                 <HomeChakra />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            exact
+            path="/account/"
+            element={
+              <ProtectedRoutes>
+                <MyAccount />
               </ProtectedRoutes>
             }
           />
