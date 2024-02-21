@@ -18,20 +18,19 @@ export const CurrentUserProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  const handleMount = () => {
-    axiosRes
-      .get("dj-rest-auth/user/")
-      .then((response) => {
-        setCurrentUser(response.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        // add console log to for dev testing if neccessary
-      });
-  };
-
   useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const response = await axiosRes.get("dj-rest-auth/user/");
+        setCurrentUser(response.data);
+      } catch (error) {
+        // Add console log for dev testing if necessary
+        console.error("Failed to fetch current user:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
     handleMount();
   }, []);
 
