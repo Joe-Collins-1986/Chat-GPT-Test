@@ -27,7 +27,7 @@ const AccountCard = (props) => {
   };
 
   return (
-    <Card overflow="hidden" borderRadius={25}>
+    <Card mt={5} overflow="hidden" borderRadius={25}>
       <CardHeader>
         <HStack justifyContent="space-between">
           <HStack>

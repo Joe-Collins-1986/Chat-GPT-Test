@@ -3,11 +3,12 @@ import "./api/axiosDefault";
 
 import { Box } from "@chakra-ui/react";
 
-// import HomePage from "./pages/Home";
-import HomeChakra from "./pages/HomeChakra";
+import HomePage from "./pages/Home";
+
 import RegisterPage from "./pages/Register";
 import LoginPage from "./pages/Login";
 import MyAccount from "./pages/Account/MyAccount";
+import AccountPasswordUpdate from "./pages/Account/AccountPasswordUpdate";
 
 import NavBar from "./components/Navbar";
 
@@ -28,7 +29,7 @@ const App = () => {
             path="/"
             element={
               <ProtectedRoutes>
-                <HomeChakra />
+                <HomePage />
               </ProtectedRoutes>
             }
           />
@@ -39,6 +40,13 @@ const App = () => {
               <ProtectedRoutes>
                 <MyAccount />
               </ProtectedRoutes>
+            }
+          />
+          <Route
+            exact
+            path="/profile/update-password/"
+            element={
+              <ProtectedRoutes>{<AccountPasswordUpdate />}</ProtectedRoutes>
             }
           />
           {/* <Route exact path="/" element={<HomePage />} /> */}

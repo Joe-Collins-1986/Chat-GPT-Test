@@ -58,7 +58,7 @@ const NavBar = () => {
           <Flex alignItems="center">
             <Show above="sm">
               <Text ml={2} fontWeight={700}>
-                Ask Cupid
+                VibeVista
               </Text>
             </Show>
           </Flex>
