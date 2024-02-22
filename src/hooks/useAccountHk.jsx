@@ -18,9 +18,12 @@ const useAccountHook = (id) => {
     const controller = new AbortController();
     const getAccount = async () => {
       try {
-        const { data: accountData } = await axiosReq.get(`/accounts/${id}/`, {
-          signal: controller.signal,
-        });
+        const { data: accountData } = await axiosReq.get(
+          `/user-profile/${id}/`,
+          {
+            signal: controller.signal,
+          }
+        );
         console.log("account", accountData);
         setAccount(accountData);
         setLoaded(true);

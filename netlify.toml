@@ -5,7 +5,7 @@
 
 [[redirects]]
   from = "/api/*"
-  to = "https://valantines-drf-8626efa242cc.herokuapp.com/:splat"
+  to = "https://vibevista-ef18bab0fcfa.herokuapp.com/:splat"
   status = 200
   force = true
 
