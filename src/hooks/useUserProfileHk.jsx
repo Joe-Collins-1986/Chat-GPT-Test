@@ -1,31 +1,34 @@
 import { useState, useEffect } from "react";
 import { axiosReq } from "../api/axiosDefault";
 import { CanceledError } from "axios";
-import { useAccount, useSetAccount } from "../contexts/AccountContext";
+import {
+  useUserProfile,
+  useSetUserProfile,
+} from "../contexts/UserProfileContext";
 
-const useAccountHook = (id) => {
-  const account = useAccount();
-  const setAccount = useSetAccount();
+const useUserProfileHook = (id) => {
+  const userProfile = useUserProfile();
+  const setUserProfile = useSetUserProfile();
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (account && account.id === id) {
+    if (userProfile && userProfile.id === id) {
       setLoaded(true);
       return;
     }
 
     const controller = new AbortController();
-    const getAccount = async () => {
+    const getUserProfile = async () => {
       try {
-        const { data: accountData } = await axiosReq.get(
+        const { data: profileData } = await axiosReq.get(
           `/user-profile/${id}/`,
           {
             signal: controller.signal,
           }
         );
-        console.log("account", accountData);
-        setAccount(accountData);
+
+        setUserProfile(profileData);
         setLoaded(true);
       } catch (err) {
         if (err instanceof CanceledError) return;
@@ -35,16 +38,16 @@ const useAccountHook = (id) => {
     };
 
     setLoaded(false);
-    getAccount();
+    getUserProfile();
 
     return () => controller.abort();
-  }, [id, setAccount, account]);
+  }, [id, setUserProfile, userProfile]);
 
   return {
-    account,
+    userProfile,
     error,
     loaded,
   };
 };
 
-export default useAccountHook;
+export default useUserProfileHook;

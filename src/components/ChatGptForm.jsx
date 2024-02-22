@@ -1,5 +1,15 @@
 import React, { useState } from "react";
-import styles from "../styles/ChatGptForm.module.css";
+import {
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  Select,
+  Button,
+  Textarea,
+  Container,
+  VStack,
+} from "@chakra-ui/react";
 
 const ChatGptForm = () => {
   const [question, setQuestion] = useState("");
@@ -25,74 +35,110 @@ const ChatGptForm = () => {
   };
 
   return (
-    <div className={styles.wrapper}>
-      <div>thr</div>
-      <div>
+    <Box w="100%" px={{ base: "4", md: "8" }} py={4}>
+      <Container maxW="full" p={5} borderRadius="lg" boxShadow="md" bg="white">
         <form onSubmit={handleSubmit}>
-          <div>
-            <div>
-              <label>Type of Person:</label>
-              <select
+          <VStack spacing={4}>
+            <FormControl>
+              <FormLabel>Type of Person:</FormLabel>
+              <Select
                 value={personType}
                 onChange={(e) => setPersonType(e.target.value)}
+                borderColor="pinkCustom.200"
+                _focus={{
+                  borderColor: "pinkCustom.300",
+                }}
+                bg="pinkCustom.50"
               >
                 <option value="Sporty">Sporty</option>
                 <option value="Intellectual">Intellectual</option>
                 <option value="Creative">Creative</option>
                 <option value="Adventurous">Adventurous</option>
-              </select>
-            </div>
-            <div>
-              <label>Relationship:</label>
-              <select
+              </Select>
+            </FormControl>
+            <FormControl>
+              <FormLabel>Relationship:</FormLabel>
+              <Select
                 value={relationship}
                 onChange={(e) => setRelationship(e.target.value)}
+                borderColor="pinkCustom.200"
+                _focus={{
+                  borderColor: "pinkCustom.300",
+                }}
+                bg="pinkCustom.50"
               >
                 <option value="Wife">Wife</option>
                 <option value="Husband">Husband</option>
                 <option value="Friend">Friend</option>
                 <option value="Sibling">Sibling</option>
                 <option value="Parent">Parent</option>
-              </select>
-            </div>
-            <div>
-              <label>Age:</label>
-              <input
+              </Select>
+            </FormControl>
+            <FormControl>
+              <FormLabel>Age:</FormLabel>
+              <Input
                 type="number"
                 value={age}
                 min="1"
                 max="100"
                 onChange={(e) => setAge(e.target.value)}
+                borderColor="pinkCustom.200"
+                _focus={{
+                  borderColor: "pinkCustom.300",
+                }}
+                bg="pinkCustom.50"
               />
-            </div>
-            <div>
-              <label>Loves:</label>
-              <select value={loves} onChange={(e) => setLoves(e.target.value)}>
+            </FormControl>
+            <FormControl>
+              <FormLabel>Loves:</FormLabel>
+              <Select
+                value={loves}
+                onChange={(e) => setLoves(e.target.value)}
+                borderColor="pinkCustom.200"
+                _focus={{
+                  borderColor: "pinkCustom.300",
+                }}
+                bg="pinkCustom.50"
+              >
                 <option value="Animals">Animals</option>
                 <option value="Books">Books</option>
                 <option value="Travel">Travel</option>
                 <option value="Music">Music</option>
-              </select>
-            </div>
-            <div>
-              <label>Ask a Question:</label>
-              <input
+              </Select>
+            </FormControl>
+            <FormControl>
+              <FormLabel>Ask a Question:</FormLabel>
+              <Input
                 type="text"
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
+                borderColor="pinkCustom.200"
+                _focus={{
+                  borderColor: "pinkCustom.300",
+                }}
+                bg="pinkCustom.50"
               />
-            </div>
-            <button type="submit">Submit</button>
-          </div>
+            </FormControl>
+            <Button colorScheme="pinkCustom" type="submit">
+              Submit
+            </Button>
+          </VStack>
         </form>
         {response && (
-          <div>
-            <textarea value={response} readOnly />
-          </div>
+          <Box mt={4}>
+            <Textarea
+              value={response}
+              isReadOnly
+              borderColor="pinkCustom.200"
+              minH="200px"
+              _focus={{
+                borderColor: "pinkCustom.300",
+              }}
+            />
+          </Box>
         )}
-      </div>
-    </div>
+      </Container>
+    </Box>
   );
 };
-
 export default ChatGptForm;

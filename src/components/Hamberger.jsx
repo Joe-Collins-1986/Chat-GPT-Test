@@ -72,9 +72,9 @@ const HamburgerMenu = () => {
                 Question
               </MenuItem>
             </NavLink>
-            <NavLink to="/account/">
+            <NavLink to="/user-profile/">
               <MenuItem bg="pinkCustom.500" aria-label="Profile">
-                Account
+                Profile
               </MenuItem>
             </NavLink>
             {currentUser ? loggedInLinks : loggedOutLinks}

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { axiosRes } from "../api/axiosDefault";
 
-const useAccountPasswordUpdateHook = () => {
+const useUserProfilePasswordUpdateHook = () => {
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState({
@@ -39,4 +39,4 @@ const useAccountPasswordUpdateHook = () => {
   };
 };
 
-export default useAccountPasswordUpdateHook;
+export default useUserProfilePasswordUpdateHook;

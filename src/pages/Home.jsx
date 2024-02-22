@@ -1,9 +1,9 @@
 import React from "react";
-import ChatGptFormChakra from "../components/ChatGptFormChakra";
+import ChatGptForm from "../components/ChatGptForm";
 import { Stack, Heading, Flex, Box } from "@chakra-ui/react";
 import { TfiThought } from "react-icons/tfi";
 
-const HomeChakra = () => {
+const Home = () => {
   return (
     <>
       <Stack
@@ -25,10 +25,10 @@ const HomeChakra = () => {
           </Box>
         </Flex>
 
-        <ChatGptFormChakra />
+        <ChatGptForm />
       </Stack>
     </>
   );
 };
 
-export default HomeChakra;
+export default Home;

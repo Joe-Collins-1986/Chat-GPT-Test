@@ -7,8 +7,9 @@ import HomePage from "./pages/Home";
 
 import RegisterPage from "./pages/Register";
 import LoginPage from "./pages/Login";
-import MyAccount from "./pages/Account/MyAccount";
-import AccountPasswordUpdate from "./pages/Account/AccountPasswordUpdate";
+
+import UserProfile from "./pages/UserProfile/UserProfile";
+import UserProfilePasswordUpdate from "./pages/UserProfile/UserProfilePasswordUpdate";
 
 import NavBar from "./components/Navbar";
 
@@ -35,21 +36,20 @@ const App = () => {
           />
           <Route
             exact
-            path="/account/"
+            path="/user-profile/"
             element={
               <ProtectedRoutes>
-                <MyAccount />
+                <UserProfile />
               </ProtectedRoutes>
             }
           />
           <Route
             exact
-            path="/profile/update-password/"
+            path="/user-profile/update-password/"
             element={
-              <ProtectedRoutes>{<AccountPasswordUpdate />}</ProtectedRoutes>
+              <ProtectedRoutes>{<UserProfilePasswordUpdate />}</ProtectedRoutes>
             }
           />
-          {/* <Route exact path="/" element={<HomePage />} /> */}
           <Route exact path="/login/" element={<LoginPage />} />
           <Route exact path="/register/" element={<RegisterPage />} />
           {/* <Route path="*" element={<ErrorPage />} /> */}

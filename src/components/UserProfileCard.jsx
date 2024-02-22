@@ -13,17 +13,17 @@ import UpdateButton from "./UpdateButton";
 
 import { useNavigate } from "react-router-dom";
 
-const AccountCard = (props) => {
+const UserProfileCard = (props) => {
   const { owner, image, bio } = props;
 
   const navigate = useNavigate();
 
   const handleEdit = () => {
-    navigate(`/profile/edit-info/`);
+    navigate(`/user-profile/edit-info/`);
   };
 
   const handlePasswordUpdate = () => {
-    navigate(`/profile/update-password/`);
+    navigate(`/user-profile/update-password/`);
   };
 
   return (
@@ -43,7 +43,7 @@ const AccountCard = (props) => {
             icon={<BsThreeDotsVertical />}
             handleEdit={() => handleEdit()}
             handlePasswordUpdate={() => handlePasswordUpdate()}
-            aria-label="Update account"
+            aria-label="Update user profile"
           />
         </HStack>
       </CardHeader>
@@ -59,4 +59,4 @@ const AccountCard = (props) => {
   );
 };
 
-export default AccountCard;
+export default UserProfileCard;

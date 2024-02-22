@@ -12,12 +12,12 @@ import {
   AlertIcon,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import useAccountPasswordUpdateHook from "../../hooks/useAccountPasswordUpdateHk";
+import useUserProfilePasswordUpdateHook from "../../hooks/useUserProfilePasswordUpdateHk";
 
-const AccountPasswordUpdate = () => {
+const UserProfilePasswordUpdate = () => {
   const navigate = useNavigate();
   const { new_password1, new_password2, errors, handleChange, handleSubmit } =
-    useAccountPasswordUpdateHook();
+    useUserProfilePasswordUpdateHook();
 
   return (
     <Stack minH={"calc(100vh - 100px)"} direction={"row"}>
@@ -95,4 +95,4 @@ const AccountPasswordUpdate = () => {
   );
 };
 
-export default AccountPasswordUpdate;
+export default UserProfilePasswordUpdate;
