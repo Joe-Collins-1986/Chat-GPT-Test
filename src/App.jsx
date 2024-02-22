@@ -5,8 +5,8 @@ import { Box } from "@chakra-ui/react";
 
 import HomePage from "./pages/Home";
 
-import RegisterPage from "./pages/Register";
-import LoginPage from "./pages/Login";
+import RegisterPage from "./pages/Auth/Register";
+import LoginPage from "./pages/Auth/Login";
 
 import UserProfile from "./pages/UserProfile/UserProfile";
 import UserProfilePasswordUpdate from "./pages/UserProfile/UserProfilePasswordUpdate";

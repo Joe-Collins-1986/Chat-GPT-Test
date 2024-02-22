@@ -66,7 +66,7 @@ const RegisterPage = () => {
                 <Text as="span" color="pinkCustom.500">
                   {" "}
                   {/* Ensure this color aligns with your theme */}
-                  Cupids
+                  Awsome
                 </Text>{" "}
                 advice
               </Text>

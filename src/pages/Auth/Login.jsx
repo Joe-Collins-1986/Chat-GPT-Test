@@ -14,9 +14,9 @@ import {
   AlertIcon,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { useSetCurrentUser } from "../contexts/CurrentUserContext";
-import { setTokenTimestamp } from "../utils/tokenManagment";
-import { useRedirect } from "../hooks/useRedirect";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import { setTokenTimestamp } from "../../utils/tokenManagment";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const LoginPage = () => {
   const setCurrentUser = useSetCurrentUser();

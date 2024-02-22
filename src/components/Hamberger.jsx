@@ -17,6 +17,16 @@ const HamburgerMenu = () => {
 
   const loggedInLinks = (
     <>
+      <NavLink to="/">
+        <MenuItem bg="pinkCustom.500" aria-label="Question">
+          Question
+        </MenuItem>
+      </NavLink>
+      <NavLink to="/user-profile/">
+        <MenuItem bg="pinkCustom.500" aria-label="Profile">
+          Profile
+        </MenuItem>
+      </NavLink>
       <Link
         onClick={() => {
           handleSignOut(setCurrentUser, navigate);
@@ -67,16 +77,6 @@ const HamburgerMenu = () => {
             mt="2"
             className="nav"
           >
-            <NavLink to="/">
-              <MenuItem bg="pinkCustom.500" aria-label="Question">
-                Question
-              </MenuItem>
-            </NavLink>
-            <NavLink to="/user-profile/">
-              <MenuItem bg="pinkCustom.500" aria-label="Profile">
-                Profile
-              </MenuItem>
-            </NavLink>
             {currentUser ? loggedInLinks : loggedOutLinks}
           </MenuList>
         </>
