@@ -1,67 +1,77 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { axiosReq, axiosRes } from "../api/axiosDefault";
-import { CanceledError } from "axios";
+// import { CanceledError } from "axios";
 import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../contexts/CurrentUserContext";
 
+import {
+  useUserProfile,
+  useSetUserProfile,
+} from "../contexts/UserProfileContext";
+
 const useUserProfileEditHook = () => {
   const { currentUser } = useCurrentUser();
-  const { setCurrentUser } = useSetCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
+
+  const userProfile = useUserProfile();
+  const setUserProfile = useSetUserProfile();
 
   const id = currentUser.pk;
 
   const navigate = useNavigate();
   const imageFile = useRef();
 
-  const [profileData, setProfileData] = useState({
-    bio: "",
-    image: "",
+  const [formProfileData, setFormProfileData] = useState({
+    bio: userProfile.bio ? userProfile.bio : "",
+    image: userProfile.image ? userProfile.image : "",
   });
 
-  const [username, setUsername] = useState("");
+  const [formUsername, setFormUsername] = useState(currentUser.username);
   const [imagePreview, setImagePreview] = useState(null);
 
-  const { bio, image } = profileData;
+  const { bio } = formProfileData;
+
+  console.log("deconstructed: ", bio);
 
   const [error, setError] = useState({});
   const [loaded, setLoaded] = useState({});
 
-  useEffect(() => {
-    const controller = new AbortController();
+  // useEffect(() => {
+  //   const controller = new AbortController();
 
-    const getProfileData = async () => {
-      if (id) {
-        try {
-          const { data } = await axiosReq.get(`/user-profile/${id}/`, {
-            signal: controller.signal,
-          });
-          const { bio, image } = data;
-          setProfileData({
-            bio,
-            image,
-          });
+  //   const getProfileData = async () => {
+  //     if (id) {
+  //       try {
+  //         const { data } = await axiosReq.get(`/user-profile/${id}/`, {
+  //           signal: controller.signal,
+  //         });
+  //         const { bio, image } = data;
+  //         setProfileData({
+  //           bio,
+  //           image,
+  //         });
 
-          setUsername(currentUser.username);
+  //         setUsername(currentUser.username);
 
-          setLoaded(true);
-        } catch (err) {
-          if (err instanceof CanceledError) return;
-          setError(err.message);
-          setLoaded(true);
-        }
-      } else {
-        navigate("/");
-      }
-    };
+  //         setLoaded(true);
+  //       } catch (err) {
+  //         if (err instanceof CanceledError) return;
+  //         setError(err.message);
+  //         setLoaded(true);
+  //       }
+  //     } else {
+  //       navigate("/");
+  //     }
+  //   };
 
-    setLoaded(false);
-    getProfileData();
+  //   setLoaded(false);
+  //   getProfileData();
 
-    return () => controller.abort();
-  }, [currentUser, navigate, id]);
+  //   return () => controller.abort();
+  // }, [currentUser, navigate, id]);
 
   const handleChange = (event) => {
     if (event.target.name === "image") {
@@ -69,15 +79,15 @@ const useUserProfileEditHook = () => {
         setImagePreview(URL.createObjectURL(event.target.files[0]));
       }
     } else {
-      setProfileData({
-        ...profileData,
+      setFormProfileData({
+        ...formProfileData,
         [event.target.name]: event.target.value,
       });
     }
   };
 
   const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
+    setFormUsername(event.target.value);
   };
 
   const handleSubmit = async (event) => {
@@ -91,9 +101,9 @@ const useUserProfileEditHook = () => {
     }
 
     try {
-      if (username !== currentUser.username) {
+      if (formUsername !== currentUser.username) {
         await axiosRes.put("/dj-rest-auth/user/", {
-          username,
+          username: formUsername,
         });
       }
 
@@ -103,15 +113,25 @@ const useUserProfileEditHook = () => {
       setCurrentUser((prevCurrentUser) => ({
         ...prevCurrentUser,
         username:
-          username !== currentUser.username
-            ? username
+          formUsername !== currentUser.username
+            ? formUsername
             : prevCurrentUser.username,
       }));
+
+      console.log("updated user state");
+
+      setUserProfile((prevProfile) => ({
+        ...prevProfile,
+        ...data,
+      }));
+
+      console.log("updated profile state");
 
       if (imagePreview) URL.revokeObjectURL(imagePreview);
       setImagePreview(null);
 
       navigate(`/user-profile/`);
+      console.log("navigated to /user-profile/");
     } catch (err) {
       setError(err.response?.data);
     }
@@ -119,8 +139,8 @@ const useUserProfileEditHook = () => {
   };
 
   return {
-    username,
-    profileData,
+    formUsername,
+    formProfileData,
     imageFile,
     error,
     loaded,

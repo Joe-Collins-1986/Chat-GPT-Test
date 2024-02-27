@@ -20,8 +20,8 @@ import { useNavigate } from "react-router-dom";
 
 const UserProfileEdit = () => {
   const {
-    username,
-    profileData,
+    formUsername,
+    formProfileData,
     imageFile,
     error,
     loaded,
@@ -33,7 +33,7 @@ const UserProfileEdit = () => {
 
   const navigate = useNavigate();
 
-  const { bio, image } = profileData;
+  const { bio, image } = formProfileData;
 
   return (
     <Stack
@@ -54,7 +54,7 @@ const UserProfileEdit = () => {
                 <Input
                   type="text"
                   name="username"
-                  value={username}
+                  value={formUsername}
                   onChange={handleUsernameChange}
                   aria-label="Username"
                 />
