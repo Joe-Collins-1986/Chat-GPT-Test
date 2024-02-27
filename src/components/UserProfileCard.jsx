@@ -13,8 +13,10 @@ import UpdateButton from "./UpdateButton";
 
 import { useNavigate } from "react-router-dom";
 
-const UserProfileCard = (props) => {
-  const { owner, image, bio } = props;
+import { useUserProfile } from "../contexts/UserProfileContext";
+
+const UserProfileCard = () => {
+  const { owner, image, bio } = useUserProfile();
 
   const navigate = useNavigate();
 

@@ -9,13 +9,13 @@ import { Box } from "@chakra-ui/react";
 const UserProfile = () => {
   const { currentUser } = useCurrentUser();
   const id = currentUser?.pk;
-  const { userProfile, error, loaded } = useUserProfileHook(id);
+  const { error, loaded } = useUserProfileHook(id);
 
   return (
     <Box p={5} aria-label="User Profile Card">
       {loaded ? (
-        userProfile ? (
-          <UserProfileCard {...userProfile} main />
+        !error ? (
+          <UserProfileCard />
         ) : (
           <h1>User profile not found</h1>
         )

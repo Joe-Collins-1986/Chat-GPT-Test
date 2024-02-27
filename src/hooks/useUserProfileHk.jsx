@@ -41,10 +41,9 @@ const useUserProfileHook = (id) => {
     getUserProfile();
 
     return () => controller.abort();
-  }, [id, setUserProfile, userProfile]);
+  }, [id]);
 
   return {
-    userProfile,
     error,
     loaded,
   };
