@@ -34,8 +34,8 @@ export const CurrentUserProvider = ({ children }) => {
     handleMount();
   }, []);
 
-  useMemo(() => {
-    axiosReq.interceptors.request.use(
+  useEffect(() => {
+    const reqInterceptor = axiosReq.interceptors.request.use(
       async (config) => {
         if (shouldRefreshToken()) {
           try {
@@ -58,7 +58,7 @@ export const CurrentUserProvider = ({ children }) => {
       }
     );
 
-    axiosRes.interceptors.response.use(
+    const resInterceptor = axiosRes.interceptors.response.use(
       (response) => response,
       async (error) => {
         if (error.response?.status === 401) {
@@ -78,6 +78,12 @@ export const CurrentUserProvider = ({ children }) => {
         return Promise.reject(error);
       }
     );
+
+    // Cleanup function to remove interceptors
+    return () => {
+      axiosReq.interceptors.request.eject(reqInterceptor);
+      axiosRes.interceptors.response.eject(resInterceptor);
+    };
   }, [navigate]);
 
   return (
