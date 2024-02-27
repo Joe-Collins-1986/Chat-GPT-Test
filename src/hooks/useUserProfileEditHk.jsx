@@ -34,8 +34,6 @@ const useUserProfileEditHook = () => {
 
   const { bio } = formProfileData;
 
-  console.log("deconstructed: ", bio);
-
   const [error, setError] = useState({});
   const [loaded, setLoaded] = useState({});
 
@@ -108,7 +106,6 @@ const useUserProfileEditHook = () => {
       }
 
       const { data } = await axiosReq.put(`/user-profile/${id}/`, formData);
-      console.log(data);
 
       setCurrentUser((prevCurrentUser) => ({
         ...prevCurrentUser,
@@ -118,24 +115,18 @@ const useUserProfileEditHook = () => {
             : prevCurrentUser.username,
       }));
 
-      console.log("updated user state");
-
       setUserProfile((prevProfile) => ({
         ...prevProfile,
         ...data,
       }));
 
-      console.log("updated profile state");
-
       if (imagePreview) URL.revokeObjectURL(imagePreview);
       setImagePreview(null);
 
       navigate(`/user-profile/`);
-      console.log("navigated to /user-profile/");
     } catch (err) {
       setError(err.response?.data);
     }
-    console.log(username);
   };
 
   return {

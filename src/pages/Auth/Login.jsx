@@ -51,7 +51,6 @@ const LoginPage = () => {
       })
       .catch((err) => {
         // add console log to for dev testing if neccessary
-        console.log(err);
         setErrors(err.response?.data);
       });
   };

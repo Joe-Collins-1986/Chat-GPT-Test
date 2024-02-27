@@ -18,7 +18,6 @@ import { useUserProfile } from "../contexts/UserProfileContext";
 const UserProfileCard = () => {
   const userProfile = useUserProfile();
   const { owner, image, bio } = userProfile;
-  console.log("useUserProfile: ", owner, image, bio);
 
   const navigate = useNavigate();
 
