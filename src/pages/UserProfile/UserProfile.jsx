@@ -17,7 +17,7 @@ const UserProfile = () => {
         !error ? (
           <UserProfileCard />
         ) : (
-          <h1>User profile not found</h1>
+          <h1>{error}</h1>
         )
       ) : (
         <h1>Loading</h1>
