@@ -11,14 +11,17 @@ import {
   Text,
   HStack,
   Heading,
-  Alert,
-  AlertIcon,
   Hide,
 } from "@chakra-ui/react";
 import { FaHeart } from "react-icons/fa";
 import axios from "axios";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const RegisterPage = () => {
+  const { currentUser } = useCurrentUser();
+  useRedirect(currentUser);
+
   const [signUpData, setSignUpData] = useState({
     username: "",
     email: "",
@@ -123,7 +126,7 @@ const RegisterPage = () => {
 
               <Button
                 type="submit"
-                bg="pinkCustom.400" // Ensure this and other custom colors align with your theme
+                bg="pinkCustom.400"
                 color={"white"}
                 _hover={{
                   bg: "pinkCustom.500",

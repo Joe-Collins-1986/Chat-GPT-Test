@@ -14,13 +14,17 @@ import {
   AlertIcon,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../../contexts/CurrentUserContext";
 import { setTokenTimestamp } from "../../utils/tokenManagment";
 import { useRedirect } from "../../hooks/useRedirect";
 
 const LoginPage = () => {
+  const { currentUser } = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
-  useRedirect("loggedIn");
+  useRedirect(currentUser);
 
   const [loginData, setLoginData] = useState({
     username: "",
@@ -42,17 +46,14 @@ const LoginPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    axios
-      .post("dj-rest-auth/login/", loginData)
-      .then((response) => {
-        setCurrentUser(response.data.user);
-        setTokenTimestamp(response.data);
-        navigate("/");
-      })
-      .catch((err) => {
-        // add console log to for dev testing if neccessary
-        setErrors(err.response?.data);
-      });
+    try {
+      const response = await axios.post("dj-rest-auth/login/", loginData);
+      setCurrentUser(response.data.user);
+      setTokenTimestamp(response.data);
+      navigate("/");
+    } catch (err) {
+      setErrors(err.response?.data);
+    }
   };
 
   return (
