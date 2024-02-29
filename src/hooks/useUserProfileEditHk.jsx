@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { axiosReq, axiosRes } from "../api/axiosDefault";
 
 import {
@@ -12,35 +12,25 @@ import {
   useSetUserProfile,
 } from "../contexts/UserProfileContext";
 
-import useUserProfileHook from "./useUserProfileHk";
-
 const useUserProfileEditHook = () => {
   const { currentUser } = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const id = currentUser.pk;
-  const { loaded } = useUserProfileHook(id);
 
-  const userProfile = useUserProfile();
+  const { userProfile } = useUserProfile();
   const setUserProfile = useSetUserProfile();
 
   const navigate = useNavigate();
   const imageFile = useRef();
 
   const [formProfileData, setFormProfileData] = useState({
-    bio: "",
-    image: "",
+    bio: userProfile.bio ? userProfile.bio : "",
+    image: userProfile.image ? userProfile.image : "",
   });
 
-  useEffect(() => {
-    setFormProfileData({
-      bio: userProfile.bio ? userProfile.bio : "",
-      image: userProfile.image ? userProfile.image : "",
-    });
-  }, [loaded]);
-
+  const { bio } = formProfileData;
   const [formUsername, setFormUsername] = useState(currentUser.username);
   const [imagePreview, setImagePreview] = useState(null);
-  const { bio } = formProfileData;
   const [error, setError] = useState({});
 
   const handleChange = (event) => {

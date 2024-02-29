@@ -24,7 +24,6 @@ const UserProfileEdit = () => {
     formProfileData,
     imageFile,
     error,
-    loaded,
     imagePreview,
     handleChange,
     handleUsernameChange,

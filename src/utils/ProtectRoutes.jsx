@@ -3,11 +3,13 @@ import { Navigate } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 
 import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { useUserProfile } from "../contexts/UserProfileContext";
 
 const ProtectedRoutes = ({ children }) => {
   const { currentUser, isLoading } = useCurrentUser();
+  const { profileLoading } = useUserProfile();
 
-  if (isLoading) {
+  if (isLoading || profileLoading) {
     return (
       <Box p={200}>
         <div>Loading...</div>;

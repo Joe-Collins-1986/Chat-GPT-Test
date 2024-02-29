@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { useUserProfile } from "../contexts/UserProfileContext";
 
 const UserProfileCard = () => {
-  const userProfile = useUserProfile();
+  const { userProfile } = useUserProfile();
   const { owner, image, bio } = userProfile;
 
   const navigate = useNavigate();
