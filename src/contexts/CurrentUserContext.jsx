@@ -20,7 +20,6 @@ export const CurrentUserProvider = ({ children }) => {
 
   useEffect(() => {
     const handleMount = async () => {
-      setIsLoading(true);
       console.log("handleMount");
       try {
         const response = await axiosRes.get("dj-rest-auth/user/");

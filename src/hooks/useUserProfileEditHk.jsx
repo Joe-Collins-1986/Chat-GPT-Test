@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { axiosReq, axiosRes } from "../api/axiosDefault";
-// import { CanceledError } from "axios";
+
 import {
   useCurrentUser,
   useSetCurrentUser,
@@ -12,64 +12,36 @@ import {
   useSetUserProfile,
 } from "../contexts/UserProfileContext";
 
+import useUserProfileHook from "./useUserProfileHk";
+
 const useUserProfileEditHook = () => {
   const { currentUser } = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+  const id = currentUser.pk;
+  const { loaded } = useUserProfileHook(id);
 
   const userProfile = useUserProfile();
   const setUserProfile = useSetUserProfile();
-
-  const id = currentUser.pk;
 
   const navigate = useNavigate();
   const imageFile = useRef();
 
   const [formProfileData, setFormProfileData] = useState({
-    bio: userProfile.bio ? userProfile.bio : "",
-    image: userProfile.image ? userProfile.image : "",
+    bio: "",
+    image: "",
   });
+
+  useEffect(() => {
+    setFormProfileData({
+      bio: userProfile.bio ? userProfile.bio : "",
+      image: userProfile.image ? userProfile.image : "",
+    });
+  }, [loaded]);
 
   const [formUsername, setFormUsername] = useState(currentUser.username);
   const [imagePreview, setImagePreview] = useState(null);
-
   const { bio } = formProfileData;
-
   const [error, setError] = useState({});
-  const [loaded, setLoaded] = useState({});
-
-  // useEffect(() => {
-  //   const controller = new AbortController();
-
-  //   const getProfileData = async () => {
-  //     if (id) {
-  //       try {
-  //         const { data } = await axiosReq.get(`/user-profile/${id}/`, {
-  //           signal: controller.signal,
-  //         });
-  //         const { bio, image } = data;
-  //         setProfileData({
-  //           bio,
-  //           image,
-  //         });
-
-  //         setUsername(currentUser.username);
-
-  //         setLoaded(true);
-  //       } catch (err) {
-  //         if (err instanceof CanceledError) return;
-  //         setError(err.message);
-  //         setLoaded(true);
-  //       }
-  //     } else {
-  //       navigate("/");
-  //     }
-  //   };
-
-  //   setLoaded(false);
-  //   getProfileData();
-
-  //   return () => controller.abort();
-  // }, [currentUser, navigate, id]);
 
   const handleChange = (event) => {
     if (event.target.name === "image") {
@@ -134,7 +106,6 @@ const useUserProfileEditHook = () => {
     formProfileData,
     imageFile,
     error,
-    loaded,
     imagePreview,
     handleChange,
     handleUsernameChange,
