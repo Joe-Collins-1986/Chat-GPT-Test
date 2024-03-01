@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import { UserProfileProvider } from "./contexts/UserProfileContext";
+import { PartnerProfileProvider } from "./contexts/PartnerProfileContext";
 import App from "./App";
 
 import { ChakraProvider } from "@chakra-ui/react";
@@ -16,7 +17,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <CurrentUserProvider>
           <UserProfileProvider>
-            <App />
+            <PartnerProfileProvider>
+              <App />
+            </PartnerProfileProvider>
           </UserProfileProvider>
         </CurrentUserProvider>
       </BrowserRouter>
