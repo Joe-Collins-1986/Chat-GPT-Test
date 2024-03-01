@@ -1,5 +1,8 @@
 import React from "react";
-import { usePartnerProfile } from "../contexts/PartnerProfileContext";
+import {
+  usePartnerProfile,
+  useSetPartnerProfile,
+} from "../contexts/PartnerProfileContext";
 import {
   Card,
   CardBody,
@@ -10,16 +13,51 @@ import {
   Button,
 } from "@chakra-ui/react";
 import useLikes from "../hooks/useLikes";
+import { axiosReq } from "../api/axiosDefault";
 
 const ActivePartnerProfileCard = () => {
   const { partnerProfile, partnerProfileLoading, partnerProfileError } =
     usePartnerProfile();
+  const setPartnerProfile = useSetPartnerProfile();
   const { defaultLikes, likesLoading, likesError } = useLikes();
 
   const likesList = defaultLikes.results || [];
   const activeLikesIds = partnerProfile?.activeProfile?.likes_display?.map(
     (like) => like.id
   );
+
+  const handleLikeClick = async (likeId) => {
+    const isLiked = activeLikesIds.includes(likeId);
+    let updatedLikesIds;
+
+    if (isLiked) {
+      updatedLikesIds = activeLikesIds.filter((id) => id !== likeId);
+    } else {
+      updatedLikesIds = [...activeLikesIds, likeId];
+    }
+
+    const requestBody = {
+      likes: updatedLikesIds,
+    };
+
+    console.log("partnerProfile", partnerProfile.activeProfile.id);
+
+    try {
+      const response = await axiosReq.patch(
+        `/partner-profile/${partnerProfile.activeProfile.id}/`,
+        requestBody
+      );
+      console.log("Updating likes");
+
+      console.log("response", response.data);
+      setPartnerProfile((prevPartnerProfile) => ({
+        ...prevPartnerProfile,
+        activeProfile: response.data,
+      }));
+    } catch (error) {
+      console.error("Error updating likes:", error);
+    }
+  };
 
   if (partnerProfileLoading) {
     return (
@@ -75,6 +113,7 @@ const ActivePartnerProfileCard = () => {
                   }
                   color="white"
                   variant="solid"
+                  onClick={() => handleLikeClick(like.id)}
                 >
                   {like.description}
                 </Button>
