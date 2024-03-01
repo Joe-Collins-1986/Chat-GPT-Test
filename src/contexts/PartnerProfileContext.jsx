@@ -33,7 +33,11 @@ export const PartnerProfileProvider = ({ children }) => {
             { signal }
           );
           console.log("Fetching active partner profile");
-          setPartnerProfile(response.data);
+
+          setPartnerProfile((prevPartnerProfile) => ({
+            ...prevPartnerProfile,
+            activeProfile: response.data,
+          }));
           console.log("Setting partner profile", response.data);
           setPartnerProfileLoading(false);
         }
