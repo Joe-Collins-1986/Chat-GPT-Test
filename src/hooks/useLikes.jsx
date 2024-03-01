@@ -14,14 +14,11 @@ const useLikes = () => {
       setLikesLoading(true);
       try {
         const response = await axiosReq.get(`/partner-likes/`, { signal });
-        console.log("Fetching partner profile likes");
 
         setDefaultLikes(response.data);
-        console.log("Setting partner profile", response.data);
+
         setLikesLoading(false);
       } catch (error) {
-        console.error("Failed to fetch likes", error);
-
         setlikesError(error.message);
         setLikesLoading(false);
       }

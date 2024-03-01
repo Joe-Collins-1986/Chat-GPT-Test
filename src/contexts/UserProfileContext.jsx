@@ -27,9 +27,9 @@ export const UserProfileProvider = ({ children }) => {
             `/user-profile/${currentUser.pk}/`,
             { signal }
           );
-          console.log("Fetching user profile");
+
           setUserProfile(response.data);
-          console.log("Setting user profile", response.data);
+
           setProfileLoading(false);
         }
       } catch (error) {

@@ -32,18 +32,15 @@ export const PartnerProfileProvider = ({ children }) => {
             `/partner-profile/${active_partner_profile_id}/`,
             { signal }
           );
-          console.log("Fetching active partner profile");
 
           setPartnerProfile((prevPartnerProfile) => ({
             ...prevPartnerProfile,
             activeProfile: response.data,
           }));
-          console.log("Setting partner profile", response.data);
+
           setPartnerProfileLoading(false);
         }
       } catch (error) {
-        console.error("Failed to fetch active partner profile:", error);
-
         setPartnerProfileError(error.message);
         setPartnerProfileLoading(false);
       }

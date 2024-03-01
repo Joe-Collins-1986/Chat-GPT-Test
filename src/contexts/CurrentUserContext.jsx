@@ -20,19 +20,15 @@ export const CurrentUserProvider = ({ children }) => {
 
   useEffect(() => {
     const handleMount = async () => {
-      console.log("handleMount");
       try {
         const response = await axiosRes.get("dj-rest-auth/user/");
         setCurrentUser(response.data);
-        console.log("no refresh required");
       } catch (error) {
-        console.error("Failed to fetch current user:", error);
         if (error.response?.status === 401) {
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
             const response = await axiosRes.get("dj-rest-auth/user/");
             setCurrentUser(response.data);
-            console.log("Token refreshed");
           } catch (refreshError) {
             console.error("Token refresh failed:", refreshError);
             setCurrentUser(null);
