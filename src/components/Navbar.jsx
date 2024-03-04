@@ -79,8 +79,8 @@ const NavBar = () => {
                 </NavLink>
               </Box>
               <Box px={4}>
-                <NavLink to="/dev-team/" aria-label="Dev Team">
-                  Dev Team
+                <NavLink to="/partner-profiles/" aria-label=" Parnter Profiles">
+                  Partner Profiles
                 </NavLink>
               </Box>
             </>

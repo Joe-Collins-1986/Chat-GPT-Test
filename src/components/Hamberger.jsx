@@ -27,6 +27,11 @@ const HamburgerMenu = () => {
           Profile
         </MenuItem>
       </NavLink>
+      <NavLink to="/partner-profiles/">
+        <MenuItem bg="pinkCustom.500" aria-label=" Parnter Profiles">
+          Partner Profiles
+        </MenuItem>
+      </NavLink>
       <Link
         onClick={() => {
           handleSignOut(setCurrentUser, navigate);

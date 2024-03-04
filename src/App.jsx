@@ -15,6 +15,7 @@ import UserProfileEdit from "./pages/UserProfile/UserProfileEdit";
 import NavBar from "./components/Navbar";
 
 import ProtectedRoutes from "./utils/ProtectRoutes";
+import ParnterProfiles from "./pages/ParnerProfile/ParnterProfiles";
 
 const App = () => {
   return (
@@ -23,7 +24,11 @@ const App = () => {
         <NavBar />
       </Box>
 
-      <Box pt="40px" bg="pinkCustom.50" sx={{ minHeight: "calc(100vh - 40x)" }}>
+      <Box
+        pt="100px"
+        bg="pinkCustom.50"
+        sx={{ minHeight: "calc(100vh - 40x)" }}
+      >
         <Routes>
           // Add alert for errors
           <Route
@@ -55,6 +60,15 @@ const App = () => {
             exact
             path="/user-profile/edit-info/"
             element={<ProtectedRoutes>{<UserProfileEdit />}</ProtectedRoutes>}
+          />
+          <Route
+            exact
+            path="/partner-profiles/"
+            element={
+              <ProtectedRoutes>
+                <ParnterProfiles />
+              </ProtectedRoutes>
+            }
           />
           <Route exact path="/login/" element={<LoginPage />} />
           <Route exact path="/register/" element={<RegisterPage />} />

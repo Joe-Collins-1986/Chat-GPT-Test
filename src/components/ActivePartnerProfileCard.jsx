@@ -1,9 +1,7 @@
 import React from "react";
 import { usePartnerProfile } from "../contexts/PartnerProfileContext";
 import { Card, CardBody, CardHeader, Heading, Box } from "@chakra-ui/react";
-import useLikes from "../hooks/useLikes";
 
-import Likes from "./Likes";
 import PartnerVariableSelection from "./PartnerVariableSelection";
 
 const ActivePartnerProfileCard = () => {
@@ -44,14 +42,12 @@ const ActivePartnerProfileCard = () => {
           </p>
         </Box>
 
-        {/* <Likes /> */}
         <PartnerVariableSelection
           name="likes"
           mapLocation="likes_display"
           endPoint="/partner-likes/"
         />
 
-        {/* <Characteristics /> */}
         <PartnerVariableSelection
           name="characteristics"
           mapLocation="characteristics_display"
