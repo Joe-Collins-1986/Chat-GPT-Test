@@ -44,11 +44,14 @@ const ChatGptForm = () => {
               <Select
                 value={personType}
                 onChange={(e) => setPersonType(e.target.value)}
-                borderColor="pinkCustom.200"
-                _focus={{
-                  borderColor: "pinkCustom.300",
+                borderColor="themeCustom.200"
+                _hover={{
+                  borderColor: "themeCustom.500",
                 }}
-                bg="pinkCustom.50"
+                _focus={{
+                  borderColor: "themeCustom.500",
+                }}
+                bg="themeCustom.50"
               >
                 <option value="Sporty">Sporty</option>
                 <option value="Intellectual">Intellectual</option>
@@ -61,11 +64,14 @@ const ChatGptForm = () => {
               <Select
                 value={relationship}
                 onChange={(e) => setRelationship(e.target.value)}
-                borderColor="pinkCustom.200"
-                _focus={{
-                  borderColor: "pinkCustom.300",
+                borderColor="themeCustom.200"
+                _hover={{
+                  borderColor: "themeCustom.500",
                 }}
-                bg="pinkCustom.50"
+                _focus={{
+                  borderColor: "themeCustom.500",
+                }}
+                bg="themeCustom.50"
               >
                 <option value="Wife">Wife</option>
                 <option value="Husband">Husband</option>
@@ -82,11 +88,14 @@ const ChatGptForm = () => {
                 min="1"
                 max="100"
                 onChange={(e) => setAge(e.target.value)}
-                borderColor="pinkCustom.200"
-                _focus={{
-                  borderColor: "pinkCustom.300",
+                borderColor="themeCustom.200"
+                _hover={{
+                  borderColor: "themeCustom.500",
                 }}
-                bg="pinkCustom.50"
+                _focus={{
+                  borderColor: "themeCustom.500",
+                }}
+                bg="themeCustom.50"
               />
             </FormControl>
             <FormControl>
@@ -94,11 +103,14 @@ const ChatGptForm = () => {
               <Select
                 value={loves}
                 onChange={(e) => setLoves(e.target.value)}
-                borderColor="pinkCustom.200"
-                _focus={{
-                  borderColor: "pinkCustom.300",
+                borderColor="themeCustom.200"
+                _hover={{
+                  borderColor: "themeCustom.500",
                 }}
-                bg="pinkCustom.50"
+                _focus={{
+                  borderColor: "themeCustom.500",
+                }}
+                bg="themeCustom.50"
               >
                 <option value="Animals">Animals</option>
                 <option value="Books">Books</option>
@@ -112,11 +124,14 @@ const ChatGptForm = () => {
                 type="text"
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
-                borderColor="pinkCustom.200"
-                _focus={{
-                  borderColor: "pinkCustom.300",
+                borderColor="themeCustom.200"
+                _hover={{
+                  borderColor: "themeCustom.500",
                 }}
-                bg="pinkCustom.50"
+                _focus={{
+                  borderColor: "themeCustom.500",
+                }}
+                bg="themeCustom.50"
               />
             </FormControl>
             <Button colorScheme="pinkCustom" type="submit">
@@ -129,11 +144,14 @@ const ChatGptForm = () => {
             <Textarea
               value={response}
               isReadOnly
-              borderColor="pinkCustom.200"
-              minH="200px"
-              _focus={{
-                borderColor: "pinkCustom.300",
+              borderColor="themeCustom.200"
+              _hover={{
+                borderColor: "themeCustom.500",
               }}
+              _focus={{
+                borderColor: "themeCustom.500",
+              }}
+              bg="themeCustom.50"
             />
           </Box>
         )}

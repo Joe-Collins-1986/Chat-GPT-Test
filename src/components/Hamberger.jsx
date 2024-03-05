@@ -18,17 +18,26 @@ const HamburgerMenu = () => {
   const loggedInLinks = (
     <>
       <NavLink to="/">
-        <MenuItem bg="pinkCustom.500" aria-label="Question">
+        <MenuItem
+          bgGradient="linear(to-l, themeCustom.100, themeCustom.900)"
+          aria-label="Question"
+        >
           Question
         </MenuItem>
       </NavLink>
       <NavLink to="/user-profile/">
-        <MenuItem bg="pinkCustom.500" aria-label="Profile">
+        <MenuItem
+          bgGradient="linear(to-l, themeCustom.100, themeCustom.900)"
+          aria-label="Profile"
+        >
           Profile
         </MenuItem>
       </NavLink>
       <NavLink to="/partner-profiles/">
-        <MenuItem bg="pinkCustom.500" aria-label=" Parnter Profiles">
+        <MenuItem
+          bgGradient="linear(to-l, themeCustom.100, themeCustom.900)"
+          aria-label=" Parnter Profiles"
+        >
           Partner Profiles
         </MenuItem>
       </NavLink>
@@ -37,7 +46,10 @@ const HamburgerMenu = () => {
           handleSignOut(setCurrentUser, navigate);
         }}
       >
-        <MenuItem bg="pinkCustom.500" aria-label="Logout">
+        <MenuItem
+          bgGradient="linear(to-l, themeCustom.100, themeCustom.900)"
+          aria-label="Logout"
+        >
           Logout
         </MenuItem>
       </Link>
@@ -47,12 +59,18 @@ const HamburgerMenu = () => {
   const loggedOutLinks = (
     <>
       <NavLink to="/register/">
-        <MenuItem bg="pinkCustom.500" aria-label="Sign Up">
+        <MenuItem
+          bgGradient="linear(to-l, themeCustom.100, themeCustom.900)"
+          aria-label="Sign Up"
+        >
           Sign Up
         </MenuItem>
       </NavLink>
       <NavLink to="/login/">
-        <MenuItem bg="pinkCustom.500" aria-label="Login">
+        <MenuItem
+          bgGradient="linear(to-l, themeCustom.100, themeCustom.900)"
+          aria-label="Login"
+        >
           Login
         </MenuItem>
       </NavLink>
@@ -64,19 +82,22 @@ const HamburgerMenu = () => {
       {({ isOpen }) => (
         <>
           <MenuButton
-            color="pinkCustom.500"
-            bg="pinkCustom.50"
             isActive={isOpen}
             as={Button}
             fontSize="1.7rem"
             h="50px"
             aria-label="Toggle Menu"
             mr={5}
+            _active={{
+              bgGradient: "linear(to-r, themeCustom.900, themeCustom.500)",
+            }}
           >
             {isOpen ? <AiOutlineClose /> : <GiHamburgerMenu />}
           </MenuButton>
           <MenuList
-            bg="pinkCustom.500"
+            bgGradient="linear(to-l, themeCustom.100, themeCustom.900)"
+            border="2px solid"
+            borderColor="themeCustom.500"
             color="white"
             w="100vw"
             mt="2"

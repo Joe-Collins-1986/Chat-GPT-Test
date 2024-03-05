@@ -2,36 +2,35 @@ import { extendTheme } from "@chakra-ui/react";
 
 const customTheme = extendTheme({
   colors: {
-    pinkCustom: {
-      50: "#ffe4e6",
-      100: "#fbb8c0",
-      200: "#f78c9b",
-      300: "#f36075",
-      400: "#ef3350",
-      500: "#d61a3c",
-      600: "#a71330",
-      700: "#780d24",
-      800: "#4a0617",
-      900: "#1d000b",
+    themeCustom: {
+      50: "#e3f2ed",
+      100: "#c1e5db",
+      200: "#9dd8c8",
+      300: "#78cab6",
+      400: "#54bca3",
+      500: "#2fae91",
+      600: "#279d82",
+      700: "#1f8c73",
+      800: "#177b64",
+      900: "#0f6a55",
     },
   },
   components: {
     Button: {
       baseStyle: {
-        _hover: {
-          bg: "pinkCustom.100",
-        },
+        transition: "background 0.3s ease-in-out",
       },
       variants: {
-        solid: (props) => ({
-          bg: props.colorMode === "dark" ? "pinkCustom.600" : "pinkCustom.400",
+        solid: {
+          bgGradient: `linear(to-l, themeCustom.900, themeCustom.500)`,
           color: "white",
-        }),
+          _hover: {
+            bgGradient: `linear(to-l, themeCustom.800, themeCustom.600)`,
+          },
+        },
       },
     },
-    // You can customize other components in a similar manner
   },
-  // You can also add custom styles for other parts of the theme (e.g., fonts, sizes)
 });
 
 export default customTheme;

@@ -27,7 +27,7 @@ const App = () => {
 
       <Box
         pt="100px"
-        bg="pinkCustom.50"
+        bg="themeCustom.50"
         sx={{ minHeight: "calc(100vh - 40x)" }}
       >
         <Routes>

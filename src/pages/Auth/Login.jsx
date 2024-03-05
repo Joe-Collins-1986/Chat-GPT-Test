@@ -60,17 +60,17 @@ const LoginPage = () => {
     <Flex minH={"100vh"} justify={"center"}>
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"} textAlign="center" px={10}>
+          <Heading
+            fontSize={"4xl"}
+            color="themeCustom.900"
+            textAlign="center"
+            px={10}
+          >
             Login to your account
           </Heading>
         </Stack>
 
-        <Box
-          rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
-          boxShadow={"lg"}
-          p={8}
-        >
+        <Box rounded={"lg"} bg="white" boxShadow={"lg"} p={8}>
           <form onSubmit={handleSubmit}>
             <Stack spacing={4}>
               <FormControl id="username">
@@ -81,7 +81,7 @@ const LoginPage = () => {
                   value={username}
                   onChange={handleChange}
                   aria-label="Username"
-                  bg="pinkCustom.50"
+                  bg="themeCustom.50"
                 />
               </FormControl>
 
@@ -100,7 +100,7 @@ const LoginPage = () => {
                   value={password}
                   onChange={handleChange}
                   aria-label="Password"
-                  bg="pinkCustom.50"
+                  bg="themeCustom.50"
                 />
               </FormControl>
 
@@ -113,11 +113,15 @@ const LoginPage = () => {
 
               <Button
                 type="submit"
-                bg="pinkCustom.400"
+                variant="solid"
+                // bg="themeCustom.600"
                 color={"white"}
-                _hover={{
-                  bg: "pinkCustom.500",
-                }}
+                // _hover={{
+                //   bg: "themeCustom.900",
+                // }}
+                // _hover={{
+                //   bgGradient: `linear(to-r, themeCustom.900, themeCustom.500)`,
+                // }}
               >
                 Login
               </Button>

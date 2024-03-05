@@ -58,17 +58,21 @@ const RegisterPage = () => {
     <Flex minH={"100vh"} justify={"center"}>
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"} textAlign="center" px={10}>
+          <Heading
+            fontSize={"4xl"}
+            textAlign="center"
+            px={10}
+            color="themeCustom.900"
+          >
             Sign up for an account
           </Heading>
-          <HStack align={"top"} justify={"center"}>
+          <HStack align={"top"} justify={"center"} color="themeCustom.900">
             <Hide below="sm">
               <FaHeart fontSize={"1.5rem"} />
-              <Text fontSize={"lg"}>
+              <Text fontSize={"lg"} color="themeCustom.700">
                 to get{" "}
-                <Text as="span" color="pinkCustom.500">
+                <Text as="span" fontWeight={900} color="themeCustom.700">
                   {" "}
-                  {/* Ensure this color aligns with your theme */}
                   Awsome
                 </Text>{" "}
                 advice
@@ -87,20 +91,20 @@ const RegisterPage = () => {
                   name="username"
                   value={username}
                   onChange={handleChange}
-                  bg="pinkCustom.50"
+                  bg="themeCustom.50"
                 />
               </FormControl>
 
-              <FormControl id="email">
+              {/* <FormControl id="email">
                 <FormLabel>Email</FormLabel>
                 <Input
                   type="email"
                   name="email"
                   value={email}
                   onChange={handleChange}
-                  bg="pinkCustom.50"
+                  bg="themeCustom.50"
                 />
-              </FormControl>
+              </FormControl> */}
 
               <FormControl id="password1">
                 <FormLabel>Password</FormLabel>
@@ -109,7 +113,7 @@ const RegisterPage = () => {
                   name="password1"
                   value={password1}
                   onChange={handleChange}
-                  bg="pinkCustom.50"
+                  bg="themeCustom.50"
                 />
               </FormControl>
 
@@ -120,18 +124,11 @@ const RegisterPage = () => {
                   name="password2"
                   value={password2}
                   onChange={handleChange}
-                  bg="pinkCustom.50"
+                  bg="themeCustom.50"
                 />
               </FormControl>
 
-              <Button
-                type="submit"
-                bg="pinkCustom.400"
-                color={"white"}
-                _hover={{
-                  bg: "pinkCustom.500",
-                }}
-              >
+              <Button type="submit" color={"white"}>
                 Sign Up
               </Button>
             </Stack>
