@@ -25,11 +25,7 @@ const App = () => {
         <NavBar />
       </Box>
 
-      <Box
-        pt="100px"
-        bg="themeCustom.50"
-        sx={{ minHeight: "calc(100vh - 40x)" }}
-      >
+      <Box pt="100px" bg="themeCustom.50" minH={"calc(100vh)"}>
         <Routes>
           // Add alert for errors
           <Route
