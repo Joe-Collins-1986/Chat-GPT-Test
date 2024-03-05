@@ -25,8 +25,11 @@ const ActivePartnerProfileCard = () => {
   }
 
   return (
-    <Card>
-      <CardHeader>
+    <Card borderRadius="0 25px 0 25px" color={"white"}>
+      <CardHeader
+        borderRadius="0 25px 0 0px"
+        bgGradient={"linear(to-l, themeCustom.400, themeCustom.900)"}
+      >
         <Heading mb={5} size="lg">
           Active Partner Profile
         </Heading>

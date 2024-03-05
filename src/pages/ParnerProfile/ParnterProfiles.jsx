@@ -8,9 +8,15 @@ const ParnterProfiles = () => {
   return (
     <>
       <PartnerProfilesSummaryCard />
-      <Tabs variant="soft-rounded" colorScheme="red" mt={10}>
+      <Tabs
+        variant="soft-rounded"
+        colorScheme="themeCustom"
+        color="white"
+        mt={10}
+        padding={5}
+      >
         <TabList>
-          <Tab>Active Partner</Tab>
+          <Tab ml={5}>Active Partner</Tab>
           <Tab>Profiles</Tab>
         </TabList>
         <TabPanels>

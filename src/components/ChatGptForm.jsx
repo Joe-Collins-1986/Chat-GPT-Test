@@ -134,9 +134,7 @@ const ChatGptForm = () => {
                 bg="themeCustom.50"
               />
             </FormControl>
-            <Button colorScheme="pinkCustom" type="submit">
-              Submit
-            </Button>
+            <Button type="submit">Submit</Button>
           </VStack>
         </form>
         {response && (

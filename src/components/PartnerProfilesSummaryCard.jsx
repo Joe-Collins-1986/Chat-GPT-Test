@@ -14,7 +14,7 @@ const PartnerProfilesSummaryCard = () => {
   const navigate = useNavigate();
 
   return (
-    <Card overflow="hidden" borderRadius={25}>
+    <Card overflow="hidden" mx={10}>
       <CardHeader>
         <HStack justifyContent="space-between">
           <Heading size="sm">Partner Profile Summary</Heading>

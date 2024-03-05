@@ -74,10 +74,10 @@ const PartnerVariableSelection = ({ name, mapLocation, endPoint }) => {
             variablesList.map((variable) => (
               <Button
                 key={variable.id}
-                bg={
+                bgGradient={
                   activeVariableIds.includes(variable.id)
-                    ? "green.400"
-                    : "red.400"
+                    ? "linear(to-l, themeCustom.400, themeCustom.900)"
+                    : "linear(to-l, gray.300, gray.900)"
                 }
                 color="white"
                 variant="solid"
