@@ -5,9 +5,6 @@ import { Box } from "@chakra-ui/react";
 
 import { useUserProfile } from "../../contexts/UserProfileContext";
 
-import ActivePartnerProfileCard from "../../components/ActivePartnerProfileCard";
-import CreatePartnerProfile from "../ParnerProfile/CreateParnerProfile";
-
 const UserProfile = () => {
   const { profileLoading, profileError } = useUserProfile();
 
@@ -22,8 +19,6 @@ const UserProfile = () => {
       ) : (
         <h1>Loading</h1>
       )}
-      <CreatePartnerProfile />
-      <ActivePartnerProfileCard />
     </Box>
   );
 };

@@ -30,7 +30,7 @@ const UserProfileCard = () => {
   };
 
   return (
-    <Card mt={5} overflow="hidden" borderRadius={25}>
+    <Card overflow="hidden" borderRadius={25}>
       <CardHeader>
         <HStack justifyContent="space-between">
           <HStack>

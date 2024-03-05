@@ -1,14 +1,14 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
-import CreatePartnerProfile from "./CreateParnerProfile";
+import PartnerProfilesSummaryCard from "../../components/PartnerProfilesSummaryCard";
+
 import ActivePartnerProfileCard from "../../components/ActivePartnerProfileCard";
 
 const ParnterProfiles = () => {
   return (
     <>
-      <Box>ParnterProfiles</Box>
+      <PartnerProfilesSummaryCard />
       <ActivePartnerProfileCard />
-      <CreatePartnerProfile />
     </>
   );
 };

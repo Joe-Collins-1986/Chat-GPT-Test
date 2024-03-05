@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   usePartnerProfile,
   useSetPartnerProfile,
@@ -21,6 +21,10 @@ const PartnerVariableSelection = ({ name, mapLocation, endPoint }) => {
   const activeVariableIds = partnerProfile?.activeProfile?.[mapLocation]?.map(
     (variable) => variable.id
   );
+
+  const [isContentVisible, setIsContentVisible] = useState(false);
+
+  const toggleContentVisibility = () => setIsContentVisible(!isContentVisible);
 
   const handleLikeClick = async (variableId) => {
     const isVariables = activeVariableIds.includes(variableId);
@@ -53,36 +57,40 @@ const PartnerVariableSelection = ({ name, mapLocation, endPoint }) => {
 
   return (
     <Box mt={5}>
-      <Heading size="sm">{name}</Heading>
-      <Grid
-        templateColumns={{
-          base: "repeat(2, 1fr)",
-          sm: "repeat(2, 1fr)",
-          md: "repeat(3, 1fr)",
-          lg: "repeat(4, 1fr)",
-        }}
-        gap={4}
-      >
-        {variablesList.length > 0 ? (
-          variablesList.map((variable) => (
-            <Button
-              key={variable.id}
-              bg={
-                activeVariableIds.includes(variable.id)
-                  ? "green.400"
-                  : "red.400"
-              }
-              color="white"
-              variant="solid"
-              onClick={() => handleLikeClick(variable.id)}
-            >
-              {variable.description}
-            </Button>
-          ))
-        ) : (
-          <p>No {name} data available</p>
-        )}
-      </Grid>
+      <Button onClick={toggleContentVisibility} mt={2} mb={4}>
+        {isContentVisible ? "Hide" : "Update"} {name}
+      </Button>
+      {isContentVisible && (
+        <Grid
+          templateColumns={{
+            base: "repeat(2, 1fr)",
+            sm: "repeat(2, 1fr)",
+            md: "repeat(3, 1fr)",
+            lg: "repeat(4, 1fr)",
+          }}
+          gap={4}
+        >
+          {variablesList.length > 0 ? (
+            variablesList.map((variable) => (
+              <Button
+                key={variable.id}
+                bg={
+                  activeVariableIds.includes(variable.id)
+                    ? "green.400"
+                    : "red.400"
+                }
+                color="white"
+                variant="solid"
+                onClick={() => handleLikeClick(variable.id)}
+              >
+                {variable.description}
+              </Button>
+            ))
+          ) : (
+            <p>No {name} data available</p>
+          )}
+        </Grid>
+      )}
     </Box>
   );
 };

@@ -25,7 +25,7 @@ const ActivePartnerProfileCard = () => {
   }
 
   return (
-    <Card mt={10}>
+    <Card>
       <CardHeader>
         <Heading mb={5} size="lg">
           Active Partner Profile

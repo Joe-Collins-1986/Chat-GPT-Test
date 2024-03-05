@@ -12,10 +12,12 @@ import {
   AlertIcon,
 } from "@chakra-ui/react";
 import useParnerProfileCreateHook from "../../hooks/usePartnerProfileCreateHk";
+import { useNavigate } from "react-router-dom";
 
 const CreatePartnerProfile = () => {
   const { name, about, error, handleChange, handleSubmit } =
     useParnerProfileCreateHook();
+  const navigate = useNavigate();
 
   return (
     <Stack

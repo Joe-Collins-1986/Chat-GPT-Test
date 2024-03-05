@@ -24,13 +24,11 @@ const useParnerProfileCreateHook = () => {
     });
   };
 
-  console.log(userData);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       await axiosReq.post("/partner-profile/", userData);
-      navigate("-1");
+      navigate(-1);
     } catch (err) {
       setError(err.response?.data);
     }
