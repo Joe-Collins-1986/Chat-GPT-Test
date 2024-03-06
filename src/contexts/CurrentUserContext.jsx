@@ -21,45 +21,16 @@ export const CurrentUserProvider = ({ children }) => {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const handleMount = async () => {
-  //     try {
-  //       const response = await axiosRes.get("dj-rest-auth/user/");
-  //       setCurrentUser(response.data);
-  //     } catch (error) {
-  //       if (error.response?.status === 401) {
-  //         try {
-  //           await axios.post("/dj-rest-auth/token/refresh/");
-  //           const response = await axiosRes.get("dj-rest-auth/user/");
-  //           setCurrentUser(response.data);
-  //         } catch (refreshError) {
-  //           console.error("Token refresh failed:", refreshError);
-  //           setCurrentUser(null);
-  //           removeTokenTimestamp();
-  //           navigate("/login");
-  //         }
-  //       }
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-
-  //   handleMount();
-  // }, []);
-
   useEffect(() => {
     const handleMount = async () => {
-      console.log("hello");
       if (shouldRefreshToken()) {
         try {
           const { data } = await axios.post("/dj-rest-auth/token/refresh/");
-          console.log("Token refreshed:", data);
           const adjustedData = {
             ...data,
             access_token: data.access,
           };
           setTokenTimestamp(adjustedData);
-          console.log("updated timestamp");
         } catch (error) {
           console.error("TESTING:", error);
           setCurrentUser(null);
@@ -84,23 +55,17 @@ export const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     const reqInterceptor = axiosReq.interceptors.request.use(
       async (config) => {
-        console.log("shouldRefreshToken: ", shouldRefreshToken());
-
         if (shouldRefreshToken()) {
           try {
             const { data } = await axios.post("/dj-rest-auth/token/refresh/");
-            console.log("Token refreshed:", data);
             const adjustedData = {
               ...data,
               access_token: data.access,
             };
             setTokenTimestamp(adjustedData);
-            console.log("updated timestamp");
           } catch (error) {
-            console.log("error refreshing token: ", error);
             setCurrentUser(null);
             removeTokenTimestamp();
-            console.log("token removed");
             navigate("/login");
 
             return Promise.reject(error);

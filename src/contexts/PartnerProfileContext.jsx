@@ -40,10 +40,12 @@ export const PartnerProfileProvider = ({ children }) => {
 
           setPartnerProfileLoading(false);
           setPartnerProfileError(null);
+        } else {
+          setPartnerProfileError("No active partner profile found!");
+          setPartnerProfileLoading(false);
         }
       } catch (error) {
         setPartnerProfileError(error.message);
-        console.log(error.message);
         setPartnerProfileLoading(false);
       }
     };
@@ -51,7 +53,7 @@ export const PartnerProfileProvider = ({ children }) => {
     fetchActivePartnerProfile();
 
     return () => controller.abort();
-  }, [profileLoading]);
+  }, [userProfile]);
 
   return (
     <PartnerProfileContext.Provider

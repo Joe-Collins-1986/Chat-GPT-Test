@@ -28,13 +28,11 @@ const ActivePartnerProfileCard = () => {
 
   if (partnerProfileError) {
     return (
-      <Heading size="lg" mt={5}>
+      <Heading size="lg" mt={5} color="black">
         {partnerProfileError}
       </Heading>
     );
   }
-
-  console.log(partnerProfile.activeProfile);
 
   const { image, name, about } = partnerProfile.activeProfile;
 

@@ -1,10 +1,21 @@
-import React from "react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import {
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  SimpleGrid,
+} from "@chakra-ui/react";
 import PartnerProfilesSummaryCard from "../../components/PartnerProfilesSummaryCard";
 
 import ActivePartnerProfileCard from "../../components/ActivePartnerProfileCard";
 
+import { usePartnerProfile } from "../../contexts/PartnerProfileContext";
+import usePartnerProfilesListHook from "../../hooks/usePartnerProfilesListHk";
+
 const ParnterProfiles = () => {
+  const { partnerProfile } = usePartnerProfile();
+  const { isLoading, error } = usePartnerProfilesListHook();
   return (
     <>
       <PartnerProfilesSummaryCard />
@@ -24,7 +35,17 @@ const ParnterProfiles = () => {
             <ActivePartnerProfileCard />
           </TabPanel>
           <TabPanel>
-            <p>two!</p>
+            {console.log("partnerProfile:", partnerProfile)}
+            <SimpleGrid
+              columns={{ sm: 1, md: 2, xl: 3 }}
+              p={5}
+              spacing={5}
+              color="black"
+            >
+              {partnerProfile.listProfiles?.results?.map((profile) => (
+                <h1>{profile.name}</h1>
+              ))}
+            </SimpleGrid>
           </TabPanel>
         </TabPanels>
       </Tabs>

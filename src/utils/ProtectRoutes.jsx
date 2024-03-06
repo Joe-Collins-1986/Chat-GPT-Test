@@ -12,7 +12,7 @@ const ProtectedRoutes = ({ children }) => {
   if (isLoading || profileLoading) {
     return (
       <Box p={200}>
-        <div>Loading...</div>;
+        <div>Loading...</div>
       </Box>
     );
   }
