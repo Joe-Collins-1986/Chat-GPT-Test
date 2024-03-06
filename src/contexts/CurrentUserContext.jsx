@@ -49,18 +49,33 @@ export const CurrentUserProvider = ({ children }) => {
 
   useEffect(() => {
     const handleMount = async () => {
+      console.log("hello");
+      if (shouldRefreshToken()) {
+        try {
+          const { data } = await axios.post("/dj-rest-auth/token/refresh/");
+          console.log("Token refreshed:", data);
+          const adjustedData = {
+            ...data,
+            access_token: data.access,
+          };
+          setTokenTimestamp(adjustedData);
+          console.log("updated timestamp");
+        } catch (error) {
+          console.error("TESTING:", error);
+          setCurrentUser(null);
+          removeTokenTimestamp();
+          navigate("/login");
+          setIsLoading(false);
+          return;
+        }
+      }
       try {
-        setIsLoading(true);
-        const response = await axiosReq.get("dj-rest-auth/user/");
+        const response = await axios.get("dj-rest-auth/user/");
         setCurrentUser(response.data);
       } catch (error) {
-        console.error("TESTING:", error);
-        setCurrentUser(null);
-        removeTokenTimestamp();
-        navigate("/login");
-      } finally {
-        setIsLoading(false);
+        // console.error(error);
       }
+      setIsLoading(false);
     };
 
     handleMount();
@@ -69,13 +84,23 @@ export const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     const reqInterceptor = axiosReq.interceptors.request.use(
       async (config) => {
+        console.log("shouldRefreshToken: ", shouldRefreshToken());
+
         if (shouldRefreshToken()) {
           try {
             const { data } = await axios.post("/dj-rest-auth/token/refresh/");
-            setTokenTimestamp(data);
+            console.log("Token refreshed:", data);
+            const adjustedData = {
+              ...data,
+              access_token: data.access,
+            };
+            setTokenTimestamp(adjustedData);
+            console.log("updated timestamp");
           } catch (error) {
+            console.log("error refreshing token: ", error);
             setCurrentUser(null);
             removeTokenTimestamp();
+            console.log("token removed");
             navigate("/login");
 
             return Promise.reject(error);
