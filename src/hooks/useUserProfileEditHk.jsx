@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { axiosReq, axiosRes } from "../api/axiosDefault";
+import { axiosReq } from "../api/axiosDefault";
 
 import {
   useCurrentUser,
@@ -62,7 +62,7 @@ const useUserProfileEditHook = () => {
 
     try {
       if (formUsername !== currentUser.username) {
-        await axiosRes.put("/dj-rest-auth/user/", {
+        await axiosReq.put("/dj-rest-auth/user/", {
           username: formUsername,
         });
       }

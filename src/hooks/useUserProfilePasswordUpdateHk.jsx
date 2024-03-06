@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { axiosRes } from "../api/axiosDefault";
+import { axiosReq } from "../api/axiosDefault";
 
 const useUserProfilePasswordUpdateHook = () => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const useUserProfilePasswordUpdateHook = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axiosRes.post("/dj-rest-auth/password/change/", userData);
+      await axiosReq.post("/dj-rest-auth/password/change/", userData);
       navigate(-1);
     } catch (err) {
       setErrors(err.response?.data);
