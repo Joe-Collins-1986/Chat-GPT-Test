@@ -1,4 +1,5 @@
 import React from "react";
+import { axiosReq } from "../api/axiosDefault";
 import {
   Card,
   CardBody,
@@ -8,7 +9,33 @@ import {
   Button,
 } from "@chakra-ui/react";
 
+import {
+  usePartnerProfile,
+  useSetPartnerProfile,
+} from "../contexts/PartnerProfileContext";
+
 const PartnerProfileMiniCard = ({ name, id, image }) => {
+  const { partnerProfile } = usePartnerProfile();
+  const setPartnerProfile = useSetPartnerProfile();
+  const handleDelete = async () => {
+    try {
+      await axiosReq.delete(`/partner-profile/${id}/`);
+
+      const updatedListProfiles = partnerProfile.listProfiles.results.filter(
+        (profile) => profile.id !== id
+      );
+      setPartnerProfile((prev) => ({
+        ...prev,
+        listProfiles: {
+          ...prev.listProfiles,
+          results: updatedListProfiles,
+        },
+      }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Card
       borderRadius="25px 25px 0 25px"
@@ -29,7 +56,10 @@ const PartnerProfileMiniCard = ({ name, id, image }) => {
           </HStack>
           <HStack>
             <Button>Activate</Button>
-            <Button bgGradient="linear(to-l, red.300, themeCustom.900)">
+            <Button
+              bgGradient="linear(to-l, red.300, themeCustom.900)"
+              onClick={handleDelete}
+            >
               Delete
             </Button>
           </HStack>
