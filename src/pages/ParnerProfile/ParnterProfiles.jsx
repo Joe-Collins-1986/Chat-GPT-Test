@@ -13,6 +13,8 @@ import ActivePartnerProfileCard from "../../components/ActivePartnerProfileCard"
 import { usePartnerProfile } from "../../contexts/PartnerProfileContext";
 import usePartnerProfilesListHook from "../../hooks/usePartnerProfilesListHk";
 
+import PartnerProfileMiniCard from "../../components/PartnerProfileMiniCard";
+
 const ParnterProfiles = () => {
   const { partnerProfile } = usePartnerProfile();
   const { isLoading, error } = usePartnerProfilesListHook();
@@ -35,7 +37,6 @@ const ParnterProfiles = () => {
             <ActivePartnerProfileCard />
           </TabPanel>
           <TabPanel>
-            {console.log("partnerProfile:", partnerProfile)}
             <SimpleGrid
               columns={{ sm: 1, md: 2, xl: 3 }}
               p={5}
@@ -43,7 +44,12 @@ const ParnterProfiles = () => {
               color="black"
             >
               {partnerProfile.listProfiles?.results?.map((profile) => (
-                <h1>{profile.name}</h1>
+                <PartnerProfileMiniCard
+                  key={profile.id}
+                  name={profile.name}
+                  id={profile.id}
+                  image={profile.image}
+                />
               ))}
             </SimpleGrid>
           </TabPanel>

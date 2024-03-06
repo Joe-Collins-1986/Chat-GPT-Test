@@ -14,14 +14,10 @@ const usePartnerProfilesListHook = () => {
       try {
         const response = await axiosReq.get("/partner-profile/");
 
-        console.log("working", response.data);
-
         setPartnerProfile((prevState) => ({
           ...prevState,
           listProfiles: response.data,
         }));
-
-        console.log("Not working", response.data);
         setError(null);
       } catch (err) {
         setError(err.message);
