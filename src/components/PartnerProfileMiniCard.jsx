@@ -28,11 +28,8 @@ const PartnerProfileMiniCard = ({ name, id, image }) => {
             )}
           </HStack>
           <HStack>
-            <Button border="1px solid black">Activate</Button>
-            <Button
-              border="1px solid black"
-              bgGradient="linear(to-l, red.300, themeCustom.900)"
-            >
+            <Button>Activate</Button>
+            <Button bgGradient="linear(to-l, red.300, themeCustom.900)">
               Delete
             </Button>
           </HStack>

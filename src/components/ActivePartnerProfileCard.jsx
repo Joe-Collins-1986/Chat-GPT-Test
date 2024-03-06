@@ -46,7 +46,9 @@ const ActivePartnerProfileCard = () => {
           <Heading mb={5} size="lg">
             Active Partner Profile
           </Heading>
-          <Button>Delete</Button>
+          <Button bgGradient="linear(to-l, red.300, themeCustom.900)">
+            Delete
+          </Button>
         </HStack>
 
         <HStack>

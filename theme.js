@@ -22,6 +22,8 @@ const customTheme = extendTheme({
       },
       variants: {
         solid: {
+          border: "1px solid",
+          borderColor: "themeCustom.900",
           bgGradient: `linear(to-l, themeCustom.900, themeCustom.500)`,
           color: "white",
           _hover: {
