@@ -7,6 +7,8 @@ import {
   shouldRefreshToken,
 } from "../utils/tokenManagment";
 
+import { setTokenTimestamp } from "../utils/tokenManagment";
+
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
 
@@ -16,6 +18,7 @@ export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,18 +52,17 @@ export const CurrentUserProvider = ({ children }) => {
       async (config) => {
         if (shouldRefreshToken()) {
           try {
-            await axios.post("/dj-rest-auth/token/refresh/");
+            const { data } = await axios.post("/dj-rest-auth/token/refresh/");
+            setTokenTimestamp(data);
           } catch (error) {
-            setCurrentUser((prevCurrentUser) => {
-              if (prevCurrentUser) {
-                navigate("/login");
-              }
-              return null;
-            });
+            setCurrentUser(null);
             removeTokenTimestamp();
-            return config;
+            navigate("/login");
+            // Do not proceed with the original request as the refresh failed
+            return Promise.reject(error);
           }
         }
+        // Proceed with the original request
         return config;
       },
       (error) => {

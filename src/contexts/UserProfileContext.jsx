@@ -31,6 +31,7 @@ export const UserProfileProvider = ({ children }) => {
           setUserProfile(response.data);
 
           setProfileLoading(false);
+          setProfileError(null);
         }
       } catch (error) {
         console.error("Failed to fetch user profile:", error);
@@ -43,7 +44,7 @@ export const UserProfileProvider = ({ children }) => {
     fetchUserProfile();
 
     return () => controller.abort();
-  }, [isLoading]);
+  }, [currentUser, profileError]);
 
   return (
     <UserProfileContext.Provider

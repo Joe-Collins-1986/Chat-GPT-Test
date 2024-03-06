@@ -39,9 +39,11 @@ export const PartnerProfileProvider = ({ children }) => {
           }));
 
           setPartnerProfileLoading(false);
+          setPartnerProfileError(null);
         }
       } catch (error) {
         setPartnerProfileError(error.message);
+        console.log(error.message);
         setPartnerProfileLoading(false);
       }
     };
