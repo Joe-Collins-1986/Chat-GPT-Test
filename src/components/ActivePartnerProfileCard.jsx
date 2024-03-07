@@ -14,9 +14,13 @@ import {
 
 import PartnerVariableSelection from "./PartnerVariableSelection";
 
+import useDeletePartnerProfile from "../hooks/usePartnerProfileDelete.Hk";
+
 const ActivePartnerProfileCard = () => {
   const { partnerProfile, partnerProfileLoading, partnerProfileError } =
     usePartnerProfile();
+
+  const handleDelete = useDeletePartnerProfile();
 
   if (partnerProfileLoading) {
     return (
@@ -34,7 +38,7 @@ const ActivePartnerProfileCard = () => {
     );
   }
 
-  const { image, name, about } = partnerProfile.activeProfile;
+  const { id, image, name, about } = partnerProfile.activeProfile;
 
   return (
     <Card borderRadius="0 25px 0 25px" color={"white"}>
@@ -46,7 +50,10 @@ const ActivePartnerProfileCard = () => {
           <Heading mb={5} size="lg">
             Active Partner Profile
           </Heading>
-          <Button bgGradient="linear(to-l, red.300, themeCustom.900)">
+          <Button
+            bgGradient="linear(to-l, red.300, themeCustom.900)"
+            onClick={() => handleDelete(id)}
+          >
             Delete
           </Button>
         </HStack>
