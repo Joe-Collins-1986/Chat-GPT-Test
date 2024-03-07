@@ -9,9 +9,6 @@ const ProtectedRoutes = ({ children }) => {
   const { currentUser, isLoading } = useCurrentUser();
   const { profileLoading } = useUserProfile();
 
-  console.log("isLoading", isLoading);
-  console.log("profileLoading", profileLoading);
-
   if (isLoading || profileLoading) {
     return (
       <Box p={200}>

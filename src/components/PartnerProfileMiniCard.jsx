@@ -14,7 +14,10 @@ import {
   useSetPartnerProfile,
 } from "../contexts/PartnerProfileContext";
 
+import { useSetUserProfile } from "../contexts/UserProfileContext";
+
 const PartnerProfileMiniCard = ({ name, id, image }) => {
+  const setUserProfile = useSetUserProfile();
   const { partnerProfile } = usePartnerProfile();
   const setPartnerProfile = useSetPartnerProfile();
   const handleDelete = async () => {
@@ -31,6 +34,17 @@ const PartnerProfileMiniCard = ({ name, id, image }) => {
           results: updatedListProfiles,
         },
       }));
+
+      if (partnerProfile.activeProfile.id === id) {
+        setPartnerProfile((prev) => ({
+          ...prev,
+          activeProfile: { results: [] },
+        }));
+        setUserProfile((prev) => ({
+          ...prev,
+          active_partner_profile_id: null,
+        }));
+      }
     } catch (error) {
       console.log(error);
     }

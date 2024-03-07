@@ -29,13 +29,10 @@ const ParnterProfiles = () => {
         padding={5}
       >
         <TabList>
-          <Tab ml={5}>Active Partner</Tab>
-          <Tab>Profiles</Tab>
+          <Tab ml={5}>Profiles</Tab>
+          <Tab>Active Partner</Tab>
         </TabList>
         <TabPanels>
-          <TabPanel>
-            <ActivePartnerProfileCard />
-          </TabPanel>
           <TabPanel>
             <SimpleGrid
               columns={{ sm: 1, md: 2, xl: 3 }}
@@ -52,6 +49,9 @@ const ParnterProfiles = () => {
                 />
               ))}
             </SimpleGrid>
+          </TabPanel>
+          <TabPanel>
+            <ActivePartnerProfileCard />
           </TabPanel>
         </TabPanels>
       </Tabs>

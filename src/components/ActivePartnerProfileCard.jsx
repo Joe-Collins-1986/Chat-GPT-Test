@@ -100,7 +100,7 @@ const ActivePartnerProfileCard = () => {
           borderColor="themeCustom.900"
         />
 
-        {partnerProfile.activeProfile.passions.length > 0 ? (
+        {partnerProfile.activeProfile.passions?.length > 0 ? (
           <Box mt={5}>
             <Heading size="sm">Passions</Heading>
             <ul>
