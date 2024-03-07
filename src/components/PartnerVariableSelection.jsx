@@ -4,7 +4,6 @@ import {
   useSetPartnerProfile,
 } from "../contexts/PartnerProfileContext";
 import { Heading, Box, Grid, Button } from "@chakra-ui/react";
-
 import usePartnerVariables from "../hooks/usePartnerVariables";
 import { axiosReq } from "../api/axiosDefault";
 
@@ -15,7 +14,6 @@ const PartnerVariableSelection = ({ name, mapLocation, endPoint }) => {
 
   const { defaultVariables, variablesLoading, variablesError } =
     usePartnerVariables({ endpoint: endPoint });
-
   const variablesList = defaultVariables.results || [];
 
   const activeVariableIds = partnerProfile?.activeProfile?.[mapLocation]?.map(
