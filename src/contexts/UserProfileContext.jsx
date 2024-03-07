@@ -29,10 +29,9 @@ export const UserProfileProvider = ({ children }) => {
           );
 
           setUserProfile(response.data);
-
-          setProfileLoading(false);
           setProfileError(null);
         }
+        setProfileLoading(false);
       } catch (error) {
         // console.error("Failed to fetch user profile:", error);
         setProfileError(error.message);
