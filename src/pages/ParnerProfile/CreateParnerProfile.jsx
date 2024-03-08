@@ -10,14 +10,22 @@ import {
   HStack,
   Alert,
   AlertIcon,
+  Select,
 } from "@chakra-ui/react";
+
 import useParnerProfileCreateHook from "../../hooks/usePartnerProfileCreateHk";
 import { useNavigate } from "react-router-dom";
+import {
+  relationshipOptions,
+  genderOptions,
+} from "../../selection_lists/partner_info_list";
 
 const CreatePartnerProfile = () => {
-  const { name, about, error, handleChange, handleSubmit } =
+  const { userData, error, handleChange, handleSubmit } =
     useParnerProfileCreateHook();
   const navigate = useNavigate();
+
+  const { name, gender, relationship, date_of_birth } = userData;
 
   return (
     <Stack
@@ -51,23 +59,89 @@ const CreatePartnerProfile = () => {
                 </Alert>
               ))}
 
-              <FormControl id="parnter_description">
-                <FormLabel htmlFor="parnter_description">
-                  Partner Descripion
-                </FormLabel>
-                <Textarea
-                  bg={"blackAlpha.50"}
-                  rows={10}
-                  type="text-area"
-                  name="about"
-                  value={about}
+              <FormControl id="relationship">
+                <FormLabel htmlFor="relationship">Relationship</FormLabel>
+                <Select
+                  name="relationship"
+                  value={relationship}
                   onChange={handleChange}
-                  aria-label="Partner Description"
+                  borderColor="themeCustom.200"
+                  aria-label="relationship"
+                  _hover={{
+                    borderColor: "themeCustom.500",
+                  }}
+                  _focus={{
+                    borderColor: "themeCustom.500",
+                  }}
+                  bg="themeCustom.50"
+                >
+                  {relationshipOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
+
+              {error?.relationship?.map((message, idx) => (
+                <Alert key={idx} status="warning">
+                  <AlertIcon />
+                  {message}
+                </Alert>
+              ))}
+
+              <FormControl id="gender">
+                <FormLabel htmlFor="gender">Gender</FormLabel>
+                <Select
+                  name="gender"
+                  value={gender}
+                  onChange={handleChange}
+                  borderColor="themeCustom.200"
+                  aria-label="gender"
+                  _hover={{
+                    borderColor: "themeCustom.500",
+                  }}
+                  _focus={{
+                    borderColor: "themeCustom.500",
+                  }}
+                  bg="themeCustom.50"
+                >
+                  {genderOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
+
+              {error?.gender?.map((message, idx) => (
+                <Alert key={idx} status="warning">
+                  <AlertIcon />
+                  {message}
+                </Alert>
+              ))}
+
+              <FormControl id="date_of_birth">
+                <FormLabel htmlFor="date_of_birth">Date of Birth</FormLabel>
+                <Input
+                  type="date"
+                  name="date_of_birth"
+                  value={date_of_birth}
+                  onChange={handleChange}
+                  borderColor="themeCustom.200"
+                  _hover={{
+                    borderColor: "themeCustom.500",
+                  }}
+                  _focus={{
+                    borderColor: "themeCustom.500",
+                  }}
+                  bg="themeCustom.50"
+                  aria-label="date of Birth"
                 />
               </FormControl>
 
-              {error?.about?.map((message, idx) => (
-                <Alert borderRadius={5} key={idx} status="warning">
+              {error?.date_of_birth?.map((message, idx) => (
+                <Alert key={idx} status="warning">
                   <AlertIcon />
                   {message}
                 </Alert>

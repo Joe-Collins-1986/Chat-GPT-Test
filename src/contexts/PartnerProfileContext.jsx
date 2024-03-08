@@ -55,6 +55,8 @@ export const PartnerProfileProvider = ({ children }) => {
     return () => controller.abort();
   }, [userProfile]);
 
+  console.log(partnerProfile);
+
   return (
     <PartnerProfileContext.Provider
       value={{ partnerProfile, partnerProfileLoading, partnerProfileError }}

@@ -18,9 +18,11 @@ const useParnerProfileCreateHook = () => {
   const [userData, setUserData] = useState({
     primary_profile: currentUser.pk,
     name: "",
-    about: "",
+    relationship: "",
+    gender: "",
+    date_of_birth: "",
   });
-  const { name, about } = userData;
+
   const [error, setError] = useState({});
 
   const handleChange = (event) => {
@@ -35,6 +37,8 @@ const useParnerProfileCreateHook = () => {
     try {
       const response = await axiosReq.post("/partner-profile/", userData);
 
+      console.log(response.data);
+
       if (!userProfile.active_partner_profile_id) {
         setUserProfile((prev) => ({
           ...prev,
@@ -44,13 +48,13 @@ const useParnerProfileCreateHook = () => {
 
       navigate(-1);
     } catch (err) {
+      console.log(err.response?.data);
       setError(err.response?.data);
     }
   };
 
   return {
-    name,
-    about,
+    userData,
     error,
     handleChange,
     handleSubmit,
