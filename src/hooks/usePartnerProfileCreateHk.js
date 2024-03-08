@@ -15,6 +15,8 @@ const useParnerProfileCreateHook = () => {
   const setUserProfile = useSetUserProfile();
   const { userProfile } = useUserProfile();
 
+  console.log(userProfile);
+
   const [userData, setUserData] = useState({
     primary_profile: currentUser.pk,
     name: "",
@@ -45,6 +47,11 @@ const useParnerProfileCreateHook = () => {
           active_partner_profile_id: response.data.id,
         }));
       }
+
+      setUserProfile((prev) => ({
+        ...prev,
+        partner_profile_count: prev.partner_profile_count + 1,
+      }));
 
       navigate(-1);
     } catch (err) {

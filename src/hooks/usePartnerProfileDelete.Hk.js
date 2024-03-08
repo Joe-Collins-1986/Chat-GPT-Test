@@ -27,6 +27,11 @@ const useDeletePartnerProfile = () => {
         },
       }));
 
+      setUserProfile((prev) => ({
+        ...prev,
+        partner_profile_count: prev.partner_profile_count - 1,
+      }));
+
       if (partnerProfile.activeProfile.id === id) {
         setPartnerProfile((prev) => ({
           ...prev,
