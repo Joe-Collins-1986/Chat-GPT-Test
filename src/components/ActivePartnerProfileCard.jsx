@@ -38,7 +38,8 @@ const ActivePartnerProfileCard = () => {
     );
   }
 
-  const { id, image, name, about } = partnerProfile.activeProfile;
+  const { id, image, name, relationship, gender, date_of_birth } =
+    partnerProfile.activeProfile;
 
   return (
     <Card borderRadius="0 25px 0 25px" color={"white"}>
@@ -70,8 +71,22 @@ const ActivePartnerProfileCard = () => {
 
       <CardBody color="black">
         <Box>
-          <Heading size="sm">Partner Description</Heading>
-          <p>{about ? about : "No description added"}</p>
+          <HStack>
+            <Heading size="sm">Relationship: </Heading>
+            <p>{relationship ? relationship : "No relationship added"}</p>
+          </HStack>
+        </Box>
+        <Box>
+          <HStack>
+            <Heading size="sm">Gender: </Heading>
+            <p>{gender ? gender : "No gender added"}</p>
+          </HStack>
+        </Box>
+        <Box>
+          <HStack>
+            <Heading size="sm">DOB: </Heading>
+            <p>{date_of_birth ? date_of_birth : "No DOB added"}</p>
+          </HStack>
         </Box>
 
         <Divider
