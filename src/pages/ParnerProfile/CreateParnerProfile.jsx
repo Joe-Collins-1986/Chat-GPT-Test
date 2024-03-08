@@ -4,13 +4,14 @@ import {
   FormControl,
   FormLabel,
   Heading,
+  Box,
   Input,
   Stack,
-  Textarea,
   HStack,
   Alert,
   AlertIcon,
   Select,
+  Image,
 } from "@chakra-ui/react";
 
 import useParnerProfileCreateHook from "../../hooks/usePartnerProfileCreateHk";
@@ -21,8 +22,14 @@ import {
 } from "../../selection_lists/partner_info_list";
 
 const CreatePartnerProfile = () => {
-  const { userData, error, handleChange, handleSubmit } =
-    useParnerProfileCreateHook();
+  const {
+    userData,
+    error,
+    imageFile,
+    imagePreview,
+    handleChange,
+    handleSubmit,
+  } = useParnerProfileCreateHook();
   const navigate = useNavigate();
 
   const { name, gender, relationship, date_of_birth } = userData;
@@ -142,6 +149,43 @@ const CreatePartnerProfile = () => {
 
               {error?.date_of_birth?.map((message, idx) => (
                 <Alert key={idx} status="warning">
+                  <AlertIcon />
+                  {message}
+                </Alert>
+              ))}
+
+              <FormControl id="image-upload" isInvalid={Boolean(error?.image)}>
+                {imagePreview ? (
+                  <Box my={5}>
+                    <Image
+                      w="100%"
+                      borderRadius="20"
+                      src={imagePreview}
+                      alt="Profile Image"
+                    />
+                  </Box>
+                ) : null}
+
+                <FormLabel htmlFor="image-upload">Partner Image</FormLabel>
+
+                <Input
+                  h="100%"
+                  p={0}
+                  type="file"
+                  id="image-upload"
+                  ref={imageFile}
+                  accept="image/*"
+                  onChange={(event) => {
+                    handleChange({
+                      target: { name: "image", files: event.target.files },
+                    });
+                  }}
+                  aria-label="Partner Image"
+                />
+              </FormControl>
+
+              {error?.image?.map((message, idx) => (
+                <Alert borderRadius={5} key={idx} status="warning">
                   <AlertIcon />
                   {message}
                 </Alert>
