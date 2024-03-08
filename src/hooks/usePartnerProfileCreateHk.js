@@ -42,7 +42,6 @@ const useParnerProfileCreateHook = () => {
         }));
       }
 
-      console.log(response.data);
       navigate(-1);
     } catch (err) {
       setError(err.response?.data);

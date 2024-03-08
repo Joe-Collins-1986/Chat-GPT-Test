@@ -11,7 +11,6 @@ const useActivateHk = () => {
   const handleActivate = async (id) => {
     const update = { active_partner_profile_id: id };
 
-    console.log("UPDATE: ", update);
     try {
       const response = await axiosReq.patch(
         `/user-profile/${userProfile.id}/`,

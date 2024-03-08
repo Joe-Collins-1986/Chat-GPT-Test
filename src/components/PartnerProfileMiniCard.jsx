@@ -16,7 +16,6 @@ const PartnerProfileMiniCard = ({ name, id, image }) => {
   const handleActivate = useActivateHk();
 
   const { userProfile } = useUserProfile();
-  console.log("print", userProfile.active_partner_profile_id);
 
   return (
     <Card
