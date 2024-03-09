@@ -11,6 +11,7 @@ import {
   Button,
   Divider,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 import PartnerVariableSelection from "./PartnerVariableSelection";
 
@@ -19,6 +20,8 @@ import useDeletePartnerProfile from "../hooks/usePartnerProfileDelete.Hk";
 const ActivePartnerProfileCard = () => {
   const { partnerProfile, partnerProfileLoading, partnerProfileError } =
     usePartnerProfile();
+
+  const navigate = useNavigate();
 
   const handleDelete = useDeletePartnerProfile();
 
@@ -70,24 +73,29 @@ const ActivePartnerProfileCard = () => {
       </CardHeader>
 
       <CardBody color="black">
-        <Box>
-          <HStack>
-            <Heading size="sm">Relationship: </Heading>
-            <p>{relationship ? relationship : "No relationship added"}</p>
-          </HStack>
-        </Box>
-        <Box>
-          <HStack>
-            <Heading size="sm">Gender: </Heading>
-            <p>{gender ? gender : "No gender added"}</p>
-          </HStack>
-        </Box>
-        <Box>
-          <HStack>
-            <Heading size="sm">DOB: </Heading>
-            <p>{date_of_birth ? date_of_birth : "No DOB added"}</p>
-          </HStack>
-        </Box>
+        <HStack justifyContent="space-between">
+          <Box>
+            <HStack>
+              <Heading size="sm">Relationship: </Heading>
+              <p>{relationship ? relationship : "No relationship added"}</p>
+            </HStack>
+
+            <HStack>
+              <Heading size="sm">Gender: </Heading>
+              <p>{gender ? gender : "No gender added"}</p>
+            </HStack>
+
+            <HStack>
+              <Heading size="sm">DOB: </Heading>
+              <p>{date_of_birth ? date_of_birth : "No DOB added"}</p>
+            </HStack>
+          </Box>
+          <Box>
+            <Button onClick={() => navigate("/partner-profile-edit/")}>
+              Edit
+            </Button>
+          </Box>
+        </HStack>
 
         <Divider
           mt={5}

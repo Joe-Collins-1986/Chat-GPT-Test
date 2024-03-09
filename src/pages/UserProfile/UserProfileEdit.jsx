@@ -148,20 +148,6 @@ const UserProfileEdit = () => {
           </form>
         </Stack>
       </Flex>
-
-      <Show above="lg">
-        <Flex px="20px" py="20px" maxHeight="calc(100vh)" flex={1}>
-          <Image
-            borderRadius={"20"}
-            alt={"Login Image"}
-            objectFit={"cover"}
-            src={
-              "https://images.unsplash.com/photo-1573643808568-4a3c26f3a06b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80"
-            }
-            aria-label="Profile Side Image"
-          />
-        </Flex>
-      </Show>
     </Stack>
   );
 };

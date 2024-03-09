@@ -17,6 +17,7 @@ import NavBar from "./components/Navbar";
 import ProtectedRoutes from "./utils/ProtectRoutes";
 import ParnterProfiles from "./pages/ParnerProfile/ParnterProfiles";
 import CreatePartnerProfile from "./pages/ParnerProfile/CreateParnerProfile";
+import EditPartnerProfile from "./pages/ParnerProfile/EditPartnerProfile";
 
 const App = () => {
   return (
@@ -73,6 +74,15 @@ const App = () => {
             element={
               <ProtectedRoutes>
                 <CreatePartnerProfile />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            exact
+            path="/partner-profile-edit/"
+            element={
+              <ProtectedRoutes>
+                <EditPartnerProfile />
               </ProtectedRoutes>
             }
           />
