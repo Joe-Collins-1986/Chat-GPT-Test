@@ -4,10 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../api/axiosDefault";
 
 import { useCurrentUser } from "../contexts/CurrentUserContext";
-import {
-  useSetUserProfile,
-  useUserProfile,
-} from "../contexts/UserProfileContext";
 
 import {
   usePartnerProfile,
@@ -17,8 +13,6 @@ import {
 const useParnerProfileEditHook = () => {
   const navigate = useNavigate();
   const { currentUser } = useCurrentUser();
-  const setUserProfile = useSetUserProfile();
-  const { userProfile } = useUserProfile();
 
   const { partnerProfile } = usePartnerProfile();
   const setPartnerProfile = useSetPartnerProfile(); //later
@@ -77,6 +71,11 @@ const useParnerProfileEditHook = () => {
       );
 
       console.log(response.data);
+
+      setPartnerProfile((prevProfile) => ({
+        ...prevProfile,
+        activeProfile: response.data,
+      }));
 
       if (imagePreview) URL.revokeObjectURL(imagePreview);
       setImagePreview(null);
