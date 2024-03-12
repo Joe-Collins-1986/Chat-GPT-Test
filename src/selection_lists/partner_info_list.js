@@ -1,9 +1,26 @@
 export const relationshipOptions = [
   "Partner",
-  "Husband",
   "Wife",
-  "Father",
+  "Husband",
   "Mother",
+  "Father",
+  "Daughter",
+  "Son",
+  "Sister",
+  "Brother",
+  "Grandmother",
+  "Grandfather",
+  "Aunt",
+  "Uncle",
+  "Cousin",
+  "Niece",
+  "Nephew",
+  "Girlfriend",
+  "Boyfriend",
+  "Friend",
+  "Colleague",
+  "Boss",
+  "Family Member",
 ];
 
-export const genderOptions = ["Unspecified Gender", "Male", "Female"];
+export const genderOptions = ["Unspecified Gender", "Male", "Female", "Other"];

@@ -35,8 +35,6 @@ const EditPartnerProfile = () => {
 
   const { name, gender, relationship, date_of_birth, image } = userData;
 
-  console.log(userData, "userData");
-
   return (
     <Stack
       minH={"calc(100vh - 100px)"}

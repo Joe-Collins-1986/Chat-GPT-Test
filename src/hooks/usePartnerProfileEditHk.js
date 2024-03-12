@@ -20,8 +20,6 @@ const useParnerProfileEditHook = () => {
   const imageFile = useRef();
   const [imagePreview, setImagePreview] = useState(null);
 
-  console.log("partnerProfile", partnerProfile.activeProfile);
-
   const { name, relationship, gender, date_of_birth, image, id } =
     partnerProfile.activeProfile;
 
@@ -70,8 +68,6 @@ const useParnerProfileEditHook = () => {
         formData
       );
 
-      console.log(response.data);
-
       setPartnerProfile((prevProfile) => ({
         ...prevProfile,
         activeProfile: response.data,
@@ -82,7 +78,6 @@ const useParnerProfileEditHook = () => {
 
       navigate(-1);
     } catch (err) {
-      console.log(err.response?.data);
       setError(err.response?.data);
     }
   };

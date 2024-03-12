@@ -14,37 +14,15 @@ import {
 import { usePartnerProfile } from "../contexts/PartnerProfileContext";
 
 import usePassionsCreateHook from "../hooks/usePassionsCreateHk";
-
-import { axiosReq } from "../api/axiosDefault";
-
-import { useSetPartnerProfile } from "../contexts/PartnerProfileContext";
+import usePassionsDeleteHook from "../hooks/usePassionsDeleteHk";
 
 const PassionsSection = () => {
-  const setPartnerProfile = useSetPartnerProfile();
-
   const { partnerProfile, partnerProfileLoading } = usePartnerProfile();
 
   const { passion, handleChange, handleSubmit, error } =
     usePassionsCreateHook();
 
-  const handleDelete = async (id) => {
-    try {
-      const response = await axiosReq.delete(`/partner-passions/${id}/`);
-      console.log(response);
-
-      setPartnerProfile((prev) => ({
-        ...prev,
-        activeProfile: {
-          ...prev.activeProfile,
-          passions: prev.activeProfile.passions.filter(
-            (passion) => passion.id !== id
-          ),
-        },
-      }));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { handleDelete, delError } = usePassionsDeleteHook();
 
   if (partnerProfileLoading) {
     return <div>Loading...</div>;

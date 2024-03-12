@@ -15,8 +15,6 @@ const useParnerProfileCreateHook = () => {
   const setUserProfile = useSetUserProfile();
   const { userProfile } = useUserProfile();
 
-  console.log(userProfile);
-
   const imageFile = useRef();
   const [imagePreview, setImagePreview] = useState(null);
 
@@ -59,8 +57,6 @@ const useParnerProfileCreateHook = () => {
     try {
       const response = await axiosReq.post("/partner-profile/", formData);
 
-      console.log(response.data);
-
       if (!userProfile.active_partner_profile_id) {
         setUserProfile((prev) => ({
           ...prev,
@@ -78,7 +74,6 @@ const useParnerProfileCreateHook = () => {
 
       navigate(-1);
     } catch (err) {
-      console.log(err.response?.data);
       setError(err.response?.data);
     }
   };

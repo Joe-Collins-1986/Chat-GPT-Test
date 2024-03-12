@@ -40,8 +40,6 @@ const usePassionsCreateHook = () => {
     try {
       const response = await axiosReq.post("/partner-passions/", formData);
 
-      console.log("response: ", response);
-
       setPartnerProfile((prevState) => {
         return {
           ...prevState,
