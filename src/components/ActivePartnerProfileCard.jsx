@@ -13,6 +13,8 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
+import PassionsSection from "./PassionsSection";
+
 import PartnerVariableSelection from "./PartnerVariableSelection";
 
 import useDeletePartnerProfile from "../hooks/usePartnerProfileDelete.Hk";
@@ -130,20 +132,7 @@ const ActivePartnerProfileCard = () => {
           borderColor="themeCustom.900"
         />
 
-        {partnerProfile.activeProfile.passions?.length > 0 ? (
-          <Box mt={5}>
-            <Heading size="sm">Passions</Heading>
-            <ul>
-              {partnerProfile.activeProfile.passions.map((passion) => (
-                <li key={passion.id}>{passion.passion_text}</li>
-              ))}
-            </ul>
-          </Box>
-        ) : (
-          <Box mt={5}>
-            <p>No passions added</p>
-          </Box>
-        )}
+        <PassionsSection />
       </CardBody>
     </Card>
   );
