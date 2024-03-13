@@ -1,13 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
-  FormControl,
-  FormLabel,
-  Input,
-  Button,
-  Textarea,
   Container,
-  VStack,
   Tabs,
   TabList,
   Tab,
@@ -18,6 +12,7 @@ import {
 import { usePartnerProfile } from "../contexts/PartnerProfileContext";
 
 import GenerateActivities from "./GenerateActivities";
+import GenerateQuestion from "./GenerateQuestion";
 
 const ChatGptForm = () => {
   const { partnerProfile } = usePartnerProfile();
@@ -47,37 +42,10 @@ const ChatGptForm = () => {
     ? passions.map((passion) => passion.passion_text).join(", ")
     : "No passions recorded";
 
-  const [question, setQuestion] = useState("");
-  const [response, setResponse] = useState("");
-
   const presetOne = `My ${relationship} is a ${gender}, born ${date_of_birth}.`;
   const presetTwo = `Their likes are ${likesList}.`;
   const presetThree = `Their characteristics are ${characteristicsList}.`;
   const presetFour = `Their passions are ${passionsList}`;
-
-  const handleQuestionSubmit = async (e) => {
-    e.preventDefault();
-
-    const positioning =
-      "Let us help you with questions about the person you have specified.";
-
-    const fetchedResponse = await fetch("/.netlify/functions/chatgpt", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        positioning,
-        presetOne,
-        presetTwo,
-        presetThree,
-        presetFour,
-        question,
-      }),
-    });
-    const jsonResponse = await fetchedResponse.json();
-    setResponse(jsonResponse.message);
-  };
 
   return (
     <Box w="100%" px={{ base: "4", md: "8" }} py={4}>
@@ -90,44 +58,12 @@ const ChatGptForm = () => {
           </TabList>
           <TabPanels>
             <TabPanel>
-              <form onSubmit={handleQuestionSubmit}>
-                <VStack spacing={4}>
-                  <FormControl>
-                    <FormLabel>Ask a Question:</FormLabel>
-                    <Input
-                      type="text"
-                      value={question}
-                      onChange={(e) => setQuestion(e.target.value)}
-                      borderColor="themeCustom.200"
-                      _hover={{
-                        borderColor: "themeCustom.500",
-                      }}
-                      _focus={{
-                        borderColor: "themeCustom.500",
-                      }}
-                      bg="themeCustom.50"
-                    />
-                  </FormControl>
-                  <Button type="submit">Submit</Button>
-                </VStack>
-              </form>
-              {response && (
-                <Box mt={4}>
-                  <Textarea
-                    minH={300}
-                    value={response}
-                    isReadOnly
-                    borderColor="themeCustom.200"
-                    _hover={{
-                      borderColor: "themeCustom.500",
-                    }}
-                    _focus={{
-                      borderColor: "themeCustom.500",
-                    }}
-                    bg="themeCustom.50"
-                  />
-                </Box>
-              )}
+              <GenerateQuestion
+                presetOne={presetOne}
+                presetTwo={presetTwo}
+                presetThree={presetThree}
+                presetFour={presetFour}
+              />
             </TabPanel>
             <TabPanel>
               <GenerateActivities
