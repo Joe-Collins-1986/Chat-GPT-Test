@@ -6,16 +6,23 @@ const openai = new OpenAI({
 
 export async function handler(event) {
   try {
-    const { preset, question } = JSON.parse(event.body);
-
-    const systemMessage =
-      "This is a Valentine's Day themed chat. Feel free to ask any questions about love, relationships, or how to express affection to your loved ones.";
+    const {
+      positioning,
+      presetOne,
+      presetTwo,
+      presetThree,
+      presetFour,
+      question,
+    } = JSON.parse(event.body);
 
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
-        { role: "system", content: "systemMessage" },
-        { role: "user", content: preset },
+        { role: "system", content: positioning },
+        { role: "user", content: presetOne },
+        { role: "user", content: presetTwo },
+        { role: "user", content: presetThree },
+        { role: "user", content: presetFour },
         { role: "user", content: question },
       ],
     });
