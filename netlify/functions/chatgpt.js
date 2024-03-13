@@ -13,6 +13,7 @@ export async function handler(event) {
       presetThree,
       presetFour,
       question,
+      outputStructure,
     } = JSON.parse(event.body);
 
     const completion = await openai.chat.completions.create({
@@ -24,6 +25,7 @@ export async function handler(event) {
         { role: "user", content: presetThree },
         { role: "user", content: presetFour },
         { role: "user", content: question },
+        { role: "user", content: outputStructure },
       ],
     });
 
