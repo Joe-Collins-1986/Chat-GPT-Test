@@ -10,6 +10,8 @@ import {
   HStack,
 } from "@chakra-ui/react";
 
+import LocationInput from "./LocationInput";
+
 const GenerateActivities = ({
   relationship,
   presetOne,
@@ -18,6 +20,11 @@ const GenerateActivities = ({
   presetFour,
 }) => {
   const [activities, setActivities] = useState([]);
+  const [location, setLocation] = useState({ latitude: null, longitude: null });
+
+  const handleLocationFetch = (latitude, longitude) => {
+    setLocation({ latitude, longitude });
+  };
 
   const generateActivities = async (e) => {
     e.preventDefault();
@@ -54,8 +61,8 @@ const GenerateActivities = ({
           },
           body: JSON.stringify({
             keyword: activity.name,
-            latitude: "53.992119",
-            longitude: "-1.541812",
+            latitude: location.latitude,
+            longitude: location.longitude,
           }),
         });
 
@@ -73,6 +80,7 @@ const GenerateActivities = ({
 
   return (
     <>
+      <LocationInput onLocationFetch={handleLocationFetch} />
       <p>Activities</p>
       <Button onClick={generateActivities}>Generate Activities</Button>
 
