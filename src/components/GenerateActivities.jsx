@@ -6,6 +6,8 @@ import {
   Heading,
   SimpleGrid,
   Link,
+  Box,
+  HStack,
 } from "@chakra-ui/react";
 
 const GenerateActivities = ({
@@ -91,16 +93,25 @@ const GenerateActivities = ({
             >
               <Heading size="sm">{activity.name}</Heading>
               <Text mt={2}>{activity.description}</Text>
-              {activity.places.length > 0 ? (
+              {activity.places?.length > 0 ? (
                 activity.places.map((place, placeIndex) => (
-                  <Link
-                    href={place.link}
-                    isExternal
-                    color="blue.500"
+                  <Box
+                    padding={2}
+                    bg="themeCustom.50"
+                    color={"black"}
                     key={placeIndex}
+                    borderRadius={5}
+                    margin={2}
                   >
-                    <Text mt={2}>{place.name}</Text>
-                  </Link>
+                    <HStack justifyContent={"space-between"}>
+                      <Link href={place.link} isExternal color="blue.500">
+                        <Text mt={2}>{place.name} location</Text>
+                      </Link>
+                      <Link href={place.website} isExternal>
+                        <Text mt={2}>Website</Text>
+                      </Link>
+                    </HStack>
+                  </Box>
                 ))
               ) : (
                 <Text>No local links found</Text>
