@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Text, Button, Card, Heading, SimpleGrid } from "@chakra-ui/react";
+import {
+  Text,
+  Button,
+  Card,
+  Heading,
+  SimpleGrid,
+  Link,
+} from "@chakra-ui/react";
 
 const GenerateActivities = ({
   relationship,
@@ -13,10 +20,10 @@ const GenerateActivities = ({
   const generateActivities = async (e) => {
     e.preventDefault();
 
-    const positioning = `Let us help you with suggestions for activites based on your ${relationship}'s age, gender, likes, characteristics and passions.`;
-    const question = "Provide 6 unique activites";
+    const positioning = `Let us help you with suggestions for activities based on your ${relationship}'s age, gender, likes, characteristics, and passions.`;
+    const question = "Provide 6 unique activities";
     const outputStructure =
-      'provide the response for each actity with a name and short description (no more than 20 words) in the form of a list of objects [ {"name": "activity1_name", "description": "activty1_description"}, {"name": "activity2_name", "description": "activty2_description"}, etc]';
+      'provide the response for each activity with a name and short description (no more than 20 words) in the form of a list of objects [ {"name": "activity1_name", "description": "activity1_description"}, {"name": "activity2_name", "description": "activity2_description"}, etc]';
 
     const fetchedResponse = await fetch("/.netlify/functions/chatgpt", {
       method: "POST",
@@ -35,10 +42,32 @@ const GenerateActivities = ({
     });
     const jsonResponse = await fetchedResponse.json();
     const activitiesArray = JSON.parse(jsonResponse.message);
-    setActivities(activitiesArray);
-  };
 
-  console.log("ACTIVITIES: ", activities);
+    const enrichedActivities = await Promise.all(
+      activitiesArray.map(async (activity) => {
+        const placesResponse = await fetch("/.netlify/functions/places", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            keyword: activity.name,
+            latitude: "53.992119",
+            longitude: "-1.541812",
+          }),
+        });
+
+        const placesData = await placesResponse.json();
+
+        return {
+          ...activity,
+          places: placesData,
+        };
+      })
+    );
+
+    setActivities(enrichedActivities);
+  };
 
   return (
     <>
@@ -62,6 +91,20 @@ const GenerateActivities = ({
             >
               <Heading size="sm">{activity.name}</Heading>
               <Text mt={2}>{activity.description}</Text>
+              {activity.places.length > 0 ? (
+                activity.places.map((place, placeIndex) => (
+                  <Link
+                    href={place.link}
+                    isExternal
+                    color="blue.500"
+                    key={placeIndex}
+                  >
+                    <Text mt={2}>{place.name}</Text>
+                  </Link>
+                ))
+              ) : (
+                <Text>No local links found</Text>
+              )}
             </Card>
           ))}
       </SimpleGrid>

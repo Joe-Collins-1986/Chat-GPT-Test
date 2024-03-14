@@ -26,8 +26,6 @@ const ChatGptForm = () => {
     passions,
   } = activeProfile;
 
-  console.log("Active Profile: ", activeProfile);
-
   const characteristicsList = characteristics_display
     ? characteristics_display
         .map((characteristic) => characteristic.description)
